@@ -4,9 +4,11 @@ import { onMount, onDestroy } from "svelte";
 import { fade } from "svelte/transition";
 
 import ChatMessages from "./chat-messages.svelte";
-import { write } from "./inference.svelte";
+import { isCurrentlyGenerating, prompt_llm, reset } from "./inference.svelte";
 
 let { close } = $props();
+
+let user_input: string = $state("");
 
 function escape_exit(e: KeyboardEvent): void {
     if (e.key === "Escape") {
@@ -14,15 +16,37 @@ function escape_exit(e: KeyboardEvent): void {
     }
 }
 
+async function submit_user_input() {
+    prompt_llm(user_input);
+    user_input = "";
+}
+
 onMount(() => {
     document.addEventListener("keydown", escape_exit);
 });
 
 onDestroy(() => {
-    document.removeEventListener("keydown", escape_exit)
+    document.removeEventListener("keydown", escape_exit);
 });
 
 </script>
+
+
+{#snippet cross(angle: number, callback: (ev: Event) => void)}
+    <svg
+        viewBox="0 0 100 100"
+        role="button"
+        class="crossButton"
+        tabindex="0"
+        onclick={callback}
+        onkeydown={(e) => e.key === "Enter" && callback(e)}
+        xmlns="http://www.w3.org/2000/svg"
+        style="transform: rotate({angle}deg)"
+    >
+        <line x1=0 y1=0 x2=100 y2=100 />
+        <line x1=0 y1=100 x2=100 y2=0 />
+    </svg>
+{/snippet}
 
 
 <div
@@ -44,29 +68,29 @@ onDestroy(() => {
             
             <div class="header" aria-label="modal header">
                 <div class="closeButton" aria-label="Close modal">
-                    <svg
-                        viewBox="0 0 100 100"
-                        role="button"
-                        tabindex="0"
-                        onclick={close}
-                        onkeydown={(e) => e.key === "Enter" && close(e)}
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <line x1=0 y1=0 x2=100 y2=100 />
-                        <line x1=0 y1=100 x2=100 y2=0 />
-                    </svg>
+                    {@render cross(45, reset)}
+                    {@render cross(0, close)}
                 </div>
                 <div class="title">LLM Inference</div>
             </div>
 
             <div class="body">
-                <button onclick={write}>Write</button>
                 <ChatMessages />
             </div>
 
             <div class="user-input">
-                <textarea placeholder="Talk to NathanLM"></textarea>
-                <button class="submit" aria-label="Send">
+                <textarea
+                    placeholder="Talk to NathanLM"
+                    bind:value={user_input}
+                    disabled={isCurrentlyGenerating()}
+                    onkeydown={ev => ev.key === "Enter" && ev.ctrlKey && submit_user_input()}
+                ></textarea>
+                <button
+                    class="submit"
+                    aria-label="Send"
+                    onclick={submit_user_input}
+                    disabled={isCurrentlyGenerating()}
+                    onkeydown={ev => ev.key === "Enter" && submit_user_input()}>
                     <svg
                         version="1.1"
                         xmlns="http://www.w3.org/2000/svg"
@@ -125,10 +149,14 @@ onDestroy(() => {
 }
 
 .header {
-    border-bottom: 1px solid rgb(216, 216, 216);
+    background: linear-gradient(to right, #0062cc, #0084ff);
+    color: white;
+    border-radius: 5px 5px 0 0;
     position: relative;
     display: flex;
-    padding: 12px 16px;
+    align-items: center;
+    padding: 14px 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .closeButton {
@@ -136,27 +164,32 @@ onDestroy(() => {
     display: flex;
     justify-content: center;
     align-items: center;
-    right: 25px;
+    right: 16px;
     height: 100%;
 }
 
-.closeButton > svg {
+svg.crossButton {
     width: 15px;
     height: 15px;
-    stroke-width: 20px;
-    stroke: lightgrey;
+    stroke-width: 10px;
+    stroke: white;
     cursor: pointer;
-    padding: 5px;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
 }
 
-.closeButton > svg:hover {
-    stroke: grey;
+svg.crossButton:hover {
+    background-color: rgba(255, 255, 255, 0.15);
 }
 
 .title {
-    font-size: 24px;
-    font-weight: bold;
-    padding: 4px 8px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    padding: 0;
+    margin: 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .body {
@@ -173,11 +206,11 @@ onDestroy(() => {
     align-items: center;
     border-top: 1px solid rgb(216, 216, 216);
     padding: 12px;
-    gap: 12px;
+    gap: 8px;
 }
 
 .user-input textarea {
-    margin-left: 16px;
+    margin-left: 0;
     padding: 10px 12px;
     border-radius: 18px;
     flex: 1;
@@ -189,6 +222,12 @@ onDestroy(() => {
     max-height: 120px;
     transition: border 0.2s ease, box-shadow 0.2s ease;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin-left: 12px;
+}
+
+.user-input textarea:disabled {
+    background-color: lightgrey;
+    cursor: not-allowed;
 }
 
 .user-input textarea:focus {
@@ -212,16 +251,22 @@ onDestroy(() => {
     justify-content: center;
     box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
     flex-shrink: 0;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
 }
 
-.user-input button.submit:hover {
+.user-input button:not(:disabled).submit:hover {
     background-color: #0056b3;
     cursor: pointer;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
 }
+
+.user-input button:disabled.submit{
+    background-color: grey;
+    cursor: not-allowed;
+    transition: none;
+} 
 
 .user-input button.submit:active {
     transform: translateY(1px);
@@ -229,13 +274,13 @@ onDestroy(() => {
 }
 
 .user-input button.submit svg {
-    height: 20px;
-    width: 20px;
+    height: 25px;
+    width: 25px;
     fill: white;
     transform: rotate(10deg) translateX(-2px);
 }
 
-
+/* Media queries for different screen sizes */
 @media (max-width: 768px) {
     .modalContainer {
         margin-top: 30px;
@@ -265,12 +310,11 @@ onDestroy(() => {
     }
     
     .header {
-        padding: 10px 12px;
+        padding: 12px 16px;
     }
     
     .title {
         font-size: 16px;
-        padding: 4px 4px;
     }
     
     .closeButton {

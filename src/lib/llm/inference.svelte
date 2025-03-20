@@ -14,6 +14,10 @@ export let messages = $state([
     }
 ]);
 let buffer: Array<string> = $state([]);
+let currentlyGenerating: boolean = $state(false);
+let currentlyPrintingResponse: boolean = $state(false);
+const markdownSpecialChars = new Set(['-', '#', '*', '>', '_', '=', '+', '`', '$']);
+
 
 async function* generate() {
     const markdownTestData = [
@@ -65,61 +69,86 @@ async function* generate() {
     }
 }
 
-async function fetch(resolve: () => void) {
+
+async function fetch_response(prompt: string) {
+    currentlyGenerating = true;
     for await (const item of generate()) {
         buffer.push(item.name);
     }
-    resolve();
+    currentlyGenerating = false;
 }
 
-export async function write() {
+
+async function print_buffer_content(): Promise<void> {
     messages.push({
         "role": "assistant",
         "content": ""
     });
-    let raw_message = "";
-    
-    const markdownSpecialChars = new Set(['-', '#', '*', '>', '_', '=', '+', '`', '$']);
-    
-    let inCodeBlock = false;
-    let inMathBlock = false;
-    
-    let done = false;
-    let id = setInterval(async () => {
-        if (buffer.length > 0) {
-            let element = buffer[0];
-            let letter = element[0];
-            buffer[0] = element.slice(1);
-            
-            raw_message += letter;
-            
-            // Update special block flags
-            if (letter === '`' && raw_message.endsWith('```')) {
-                inCodeBlock = !inCodeBlock;
-            } else if (letter === '$' && raw_message.endsWith('$$')) {
-                inMathBlock = !inMathBlock;
-            }
-            const inSpecialContext = inCodeBlock || inMathBlock;
-    
-            if ((markdownSpecialChars.has(letter) && !inSpecialContext) || letter === " " || letter === "\n") {
-                // This is a weird situation, so let's wait until we parse again
-                messages[messages.length - 1].content += letter;
+
+    return new Promise(resolve => {
+        let raw_message = "";    
+        let inCodeBlock = false;
+        let inMathBlock = false;
+
+        let id = setInterval(async () => {
+            if (buffer.length > 0) {
+                let element = buffer[0];
+                let letter = element[0];
+                buffer[0] = element.slice(1);
+                
+                raw_message += letter;
+                
+                // Update special block flags
+                if (letter === '`' && raw_message.endsWith('```')) {
+                    inCodeBlock = !inCodeBlock;
+                } else if (letter === '$' && raw_message.endsWith('$$')) {
+                    inMathBlock = !inMathBlock;
+                }
+                const inSpecialContext = inCodeBlock || inMathBlock;
+        
+                if ((markdownSpecialChars.has(letter) && !inSpecialContext) || letter === " " || letter === "\n") {
+                    // This is a weird situation, so let's wait until we parse again
+                    messages[messages.length - 1].content += letter;
+                } else {
+                    messages[messages.length - 1].content = await marked(raw_message);
+                }
+                
+                if (buffer[0].length === 0) {
+                    buffer = buffer.slice(1);
+                }
             } else {
-                messages[messages.length - 1].content = await marked(raw_message);
+                if (!currentlyGenerating) {
+                    clearInterval(id);
+                    // Final parse to make sure everything is correctly parsed
+                    messages[messages.length - 1].content = await marked(raw_message);
+                    resolve();
+                }
             }
-            
-            if (buffer[0].length === 0) {
-                buffer = buffer.slice(1);
-            }
-        } else {
-            if (done) {
-                clearInterval(id);
-                // Final parse to make sure everything is correctly parsed
-                messages[messages.length - 1].content = await marked(raw_message);
-            }
-        }
-    }, 5);
-    fetch(() => done = true);
+        }, 5);
+    });
+}
+
+export async function prompt_llm(prompt: string) {
+    currentlyPrintingResponse = true;
+    messages.push({
+        "role": "user",
+        "content": prompt
+    })
+    fetch_response(prompt);
+    await print_buffer_content();
+    currentlyPrintingResponse = false;
+}
+
+export async function reset() {
+    currentlyPrintingResponse = true;
+    messages.splice(0, messages.length);
+    buffer = ["Bonjour, je suis l'assistant de Nathan, promptez-moi !"];
+    await print_buffer_content();
+    currentlyPrintingResponse = false;
+}
+
+export function isCurrentlyGenerating(): boolean {
+    return currentlyPrintingResponse;
 }
 
 </script>
