@@ -1,6 +1,6 @@
 <script lang="ts">
 
-import LlmModal from "$lib/LLMModal.svelte";
+import LlmModal from "$lib/llm/LLMModal.svelte";
 
 let displayLLM: boolean = $state(false);
 
