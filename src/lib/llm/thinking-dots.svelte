@@ -16,7 +16,7 @@
 .dot {
     width: 8px;
     height: 8px;
-    background-color: #555;
+    background-color: #eee;
     border-radius: 50%;
     margin: 0 3px;
     opacity: 0.7;

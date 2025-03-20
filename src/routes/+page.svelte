@@ -9,5 +9,5 @@ let displayLLM: boolean = $state(false);
 <button onclick={() => displayLLM = true}>Show LLM</button>
 
 {#if displayLLM}
-    <LlmModal onclick={() => displayLLM = false}/>
+    <LlmModal close={() => displayLLM = false}/>
 {/if}

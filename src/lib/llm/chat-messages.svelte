@@ -38,8 +38,8 @@ import { messages } from "./inference.svelte";
     width: fit-content;
     padding: 10px 15px;
     border-radius: 18px;
-    background-color: #a9a9a9;
-    color: #000;
+    background-color: #676767;
+    color: #fff;
 }
 
 .user {
@@ -61,7 +61,7 @@ import { messages } from "./inference.svelte";
     font-weight: 700;
     margin-top: 0.25rem;
     margin-bottom: 0.5rem;
-    color: #2c3e50;
+    color: #a3c5ff;
 }
 
 :global(.chat-messages .message h1) {
@@ -114,14 +114,15 @@ import { messages } from "./inference.svelte";
 
 :global(.chat-messages .message blockquote) {
     border-left: 4px solid #dfe2e5;
-    padding-left: 1rem;
-    color: #054394;
-    font-weight: 600;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 0px 1rem 1px 1rem;
+    background-color: grey;
     margin: 1rem 0;
 }
 
 :global(.chat-messages .message a) {
-    color: #0366d6;
+    color: #0e2e58;
     text-decoration: none;
 }
 
@@ -142,6 +143,7 @@ import { messages } from "./inference.svelte";
 
 :global(.chat-messages .message th) {
     background-color: #f6f8fa;
+    color: #555;
 }
 
 :global(.chat-messages .message img) {
