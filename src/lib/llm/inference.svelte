@@ -111,7 +111,9 @@ export class ChatsState {
     async prune() {
         if (this.chats[this.chats.length - 1].is_empty) {
             this.chats.pop();
-            this.focusedChatIdx = null;
+            if (this.focusedChatIdx === this.chats.length) {
+                this.focusedChatIdx = null;
+            } 
         }
     }
 }

@@ -17,9 +17,12 @@ function hide() {
     convListElement.style.opacity = "0";
     convListElement.style.transform = "translateX(-20px)";
     setTimeout(() => {
-    if (convListElement.style.opacity === "0") {
-        convListElement.style.visibility = "hidden";
-    }
+        // I need to check whether or not convListElement still exists, because
+        // if the modal gets closed too fast, it may have been destroyed before
+        // this callback gets resolved.
+        if (convListElement && convListElement.style.opacity === "0") {
+            convListElement.style.visibility = "hidden";
+        }
     }, 300);
 }
 
