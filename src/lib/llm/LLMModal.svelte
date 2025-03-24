@@ -27,8 +27,11 @@ async function newChat() {
 }
 
 async function submit_user_input() {
-    chat?.prompt_llm(user_input);
-    user_input = "";
+    let trimmed_input = user_input.trim();
+    if (trimmed_input.length > 0) {
+        chat?.prompt_llm(trimmed_input);
+        user_input = "";
+    }
 }
 
 onMount(() => {

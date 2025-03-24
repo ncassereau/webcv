@@ -27,11 +27,13 @@ let { onclick }: { onclick: () => void} = $props();
     </picture>
 </div>
 
+
 <style>
+
 .llm-button-wrapper {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 40px;
+    right: 60px;
     width: 68px;
     height: 68px;
     border-radius: 50%;
@@ -74,4 +76,5 @@ let { onclick }: { onclick: () => void} = $props();
         transform: rotate(360deg);
     }
 }
+
 </style>
