@@ -1,22 +1,26 @@
 <script lang="ts">
 
-import ThinkingDots from "./thinking-dots.svelte";
-import { messages } from "./inference.svelte";
 
+import ThinkingDots from "./thinking-dots.svelte";
+import { Chat } from "./inference.svelte";
+
+let { chat }: { chat: Chat | null } = $props();
 
 </script>
 
 
 <div class="chat-messages">
-    {#each messages as message}
-        <div class="message {message["role"]}">
-            {#if message["content"].length > 0}
-                {@html message["content"] }
-            {:else}
-                <ThinkingDots />
-            {/if}
-        </div>
-    {/each}
+    {#if chat !== null}
+        {#each chat.messages as message}
+            <div class="message {message["role"]}">
+                {#if message["content"].length > 0}
+                    {@html message["content"] }
+                {:else}
+                    <ThinkingDots />
+                {/if}
+            </div>
+        {/each}
+    {/if}
 </div>
 
 

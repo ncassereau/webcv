@@ -3,36 +3,51 @@
 import { onMount, onDestroy } from "svelte";
 import { fade } from "svelte/transition";
 
+import ConversationList from "./conversation-list.svelte";
 import ChatMessages from "./chat-messages.svelte";
-import { isCurrentlyGenerating, prompt_llm, reset } from "./inference.svelte";
+import { chatsState } from "./inference.svelte";
 
 let { close } = $props();
 
 let user_input: string = $state("");
+let chat = $derived(
+    chatsState.focusedChatIdx === null ? null : chatsState.chats[chatsState.focusedChatIdx]
+);
 
-function escape_exit(e: KeyboardEvent): void {
+async function escape_exit(e: KeyboardEvent): Promise<void> {
     if (e.key === "Escape") {
         close();
     }
 }
 
+async function newChat() {
+    user_input = "";
+    chatsState.prune() ;
+    chatsState.createNewChat();
+}
+
 async function submit_user_input() {
-    prompt_llm(user_input);
+    chat?.prompt_llm(user_input);
     user_input = "";
 }
 
 onMount(() => {
     document.addEventListener("keydown", escape_exit);
+    setTimeout(async () => {
+        if (chatsState.focusedChatIdx === null) chatsState.createNewChat();
+    }, 0); // Makes sure that this is executed after rendering
 });
+
 
 onDestroy(() => {
     document.removeEventListener("keydown", escape_exit);
+    chatsState.prune();
 });
 
 </script>
 
 
-{#snippet cross(angle: number, callback: (ev: Event) => void)}
+{#snippet cross(isPlus: boolean, callback: (ev: Event) => Promise<void>)}
     <svg
         viewBox="0 0 100 100"
         role="button"
@@ -41,10 +56,14 @@ onDestroy(() => {
         onclick={callback}
         onkeydown={(e) => e.key === "Enter" && callback(e)}
         xmlns="http://www.w3.org/2000/svg"
-        style="transform: rotate({angle}deg)"
     >
-        <line x1=0 y1=0 x2=100 y2=100 />
-        <line x1=0 y1=100 x2=100 y2=0 />
+        {#if isPlus}
+            <line x1=50 y1=0 x2=50 y2=100 />
+            <line x1=0 y1=50 x2=100 y2=50 />
+        {:else}
+            <line x1=0 y1=0 x2=100 y2=100 />
+            <line x1=0 y1=100 x2=100 y2=0 />
+        {/if}
     </svg>
 {/snippet}
 
@@ -68,29 +87,35 @@ onDestroy(() => {
             
             <div class="header" aria-label="modal header">
                 <div class="closeButton" aria-label="Close modal">
-                    {@render cross(45, reset)}
-                    {@render cross(0, close)}
+                    {@render cross(true, newChat)}
+                    {@render cross(false, close)}
                 </div>
                 <div class="title">LLM Inference</div>
             </div>
 
-            <div class="body">
-                <ChatMessages />
+            <div class="body-container">
+                <div class="sidebar">
+                    <ConversationList />
+                </div>
+                <div class="body">
+                    <ChatMessages {chat} />
+                </div>
             </div>
 
             <div class="user-input">
                 <textarea
                     placeholder="Talk to NathanLM"
                     bind:value={user_input}
-                    disabled={isCurrentlyGenerating()}
+                    disabled={chat?.isCurrentlyGenerating()}
                     onkeydown={ev => ev.key === "Enter" && ev.ctrlKey && submit_user_input()}
-                ></textarea>
+                    ></textarea>
+
                 <button
                     class="submit"
                     aria-label="Send"
-                    onclick={submit_user_input}
-                    disabled={isCurrentlyGenerating()}
-                    onkeydown={ev => ev.key === "Enter" && submit_user_input()}>
+                    disabled={chat?.isCurrentlyGenerating()}
+                    onkeydown={ev => ev.key === "Enter" && submit_user_input()}
+                    onclick={submit_user_input}>
                     <svg
                         version="1.1"
                         xmlns="http://www.w3.org/2000/svg"
@@ -143,7 +168,7 @@ onDestroy(() => {
     max-width: 800px;
     min-width: 100px;
     min-height: 300px;
-    max-height: 85vh;
+    height: 85vh;
     display: flex;
     flex-direction: column;
 }
@@ -177,6 +202,7 @@ svg.crossButton {
     padding: 8px;
     border-radius: 50%;
     transition: background-color 0.2s ease;
+    stroke-width: 10px;
 }
 
 svg.crossButton:hover {
@@ -192,12 +218,27 @@ svg.crossButton:hover {
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
+.body-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar {
+    position: absolute;
+    width: 300px;
+    height: 100%;
+    flex-shrink: 0;
+}
+
 .body {
+    flex-grow: 1;
+    height: 100%;
     overflow-y: auto;
     margin-bottom: 8px;
     padding: 12px 16px 0 16px;
-    min-width: 200px;
-    flex: 1;
 }
 
 .user-input {

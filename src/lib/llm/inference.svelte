@@ -1,154 +1,123 @@
 <script module lang="ts">
-
+    
 import { marked } from 'marked';
 
-
-export let messages = $state([
-    {
-        "role": "user",
-        "content": "Hello!"
-    },
-    {
-        "role": "assistant",
-        "content": "OK"
-    }
-]);
-let buffer: Array<string> = $state([]);
-let currentlyGenerating: boolean = $state(false);
-let currentlyPrintingResponse: boolean = $state(false);
+import { generate } from "./fake_generation.svelte";
+    
+    
 const markdownSpecialChars = new Set(['-', '#', '*', '>', '_', '=', '+', '`', '$']);
 
+export class Chat {
 
-async function* generate() {
-    const markdownTestData = [
-    { 
-        id: 1, 
-        name: "# Titres et formatage de texte\n\n## Sous-titre h2\n\n### Sous-titre h3\n\nTexte normal avec **gras**, *italique*, et ***gras-italique***.\n\n~~Texte barré~~ et `code inline`.\n" 
-    },
-    { 
-        id: 2, 
-        name: "# Listes\n\n## Liste à puces\n\n- Premier élément\n- Deuxième élément\n  - Sous-élément imbriqué\n  - Autre sous-élément\n- Troisième élément\n\n## Liste numérotée\n\n1. Premier élément\n2. Deuxième élément\n   1. Sous-élément imbriqué\n   2. Autre sous-élément\n3. Troisième élément\n" 
-    },
-    { 
-        id: 3, 
-        name: "# Citations et séparateurs\n\n> Ceci est une citation.\n> \n> Elle peut contenir plusieurs paragraphes.\n\nTexte normal après la citation.\n\n---\n\nTexte après un séparateur horizontal.\n" 
-    },
-    { 
-        id: 4, 
-        name: "# Liens et images\n\n[Lien vers Google](https://www.google.com)\n\n<https://example.com> - Lien automatique\n" 
-    },
-    { 
-        id: 5, 
-        name: "# Tableaux\n\n| En-tête 1 | En-tête 2 | En-tête 3 |\n| --------- | --------- | --------- |\n| Cellule 1 | Cellule 2 | Cellule 3 |\n| Ligne 2   | Données   | Autres    |\n| Ligne 3   | Texte     | Contenu   |\n" 
-    },
-    { 
-        id: 6, 
-        name: "# Blocs de code\n\n```javascript\nfunction hello() {\n  console.log('Bonjour le monde!');\n  return true;\n}\n\n// Un commentaire\nconst test = 123;\n```\n\n```css\nbody {\n  font-family: sans-serif;\n  color: #333;\n  margin: 0;\n  padding: 20px;\n}\n```\n" 
-    },
-    { 
-        id: 7, 
-        name: "# Listes de tâches\n\n- [x] Tâche terminée\n- [ ] Tâche à faire\n- [ ] Autre tâche à faire\n  - [ ] Sous-tâche imbriquée\n  - [x] Sous-tâche terminée\n" 
-    },
-    { 
-        id: 8, 
-        name: "# Détails dépliables\n\n<details>\n  <summary>Cliquez pour afficher plus d'informations</summary>\n  \n  Ce contenu est masqué par défaut et s'affiche quand on clique sur le titre.\n  \n  - Il peut contenir du Markdown\n  - Comme des listes\n  - Ou du **texte formaté**\n</details>\n" 
-    },
-    { 
-        id: 9, 
-        name: "# Échappement de caractères spéciaux\n\nSymboles échappés: \\* \\_ \\~ \\` \\# \\[ \\] \\( \\) \\.\n\nEmojis: 👍 🎉 🚀 💡 ⚠️\n" 
-    },
-    { 
-        id: 10, 
-        name: "# Combinaison d'éléments\n\n## Liste avec code\n\n- Item avec `code inline`\n- Item avec **texte en gras**\n\n## Tableau avec formatage\n\n| *Italique* | **Gras** | `Code` |\n| ---------- | -------- | ------ |\n| Contenu    | Contenu  | Contenu |\n\n> Citation contenant une liste:\n> - Premier point\n> - Second point\n> \n> Et du `code inline`.\n" 
+    messages: Array<{ "role": string, "content": string }> = $state([]);
+    buffer: Array<string> = $state([]);
+    currentlyGenerating: boolean = $state(false);
+    currentlyPrintingResponse: boolean = $state(false);
+    is_empty: boolean = true;
+
+
+    async fetch_response(prompt: string) {
+        this.currentlyGenerating = true;
+        for await (const item of generate()) {
+            this.buffer.push(item.name);
+        }
+        this.currentlyGenerating = false;
     }
-    ];
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    for (const item of markdownTestData) {
-        await new Promise(resolve => setTimeout(resolve, 50));
-        yield item;
-    }
-}
 
+    async print_buffer_content(): Promise<void> {
+        this.messages.push({
+            "role": "assistant",
+            "content": ""
+        });
 
-async function fetch_response(prompt: string) {
-    currentlyGenerating = true;
-    for await (const item of generate()) {
-        buffer.push(item.name);
-    }
-    currentlyGenerating = false;
-}
+        return new Promise(resolve => {
+            let raw_message = "";    
+            let inCodeBlock = false;
+            let inMathBlock = false;
 
-
-async function print_buffer_content(): Promise<void> {
-    messages.push({
-        "role": "assistant",
-        "content": ""
-    });
-
-    return new Promise(resolve => {
-        let raw_message = "";    
-        let inCodeBlock = false;
-        let inMathBlock = false;
-
-        let id = setInterval(async () => {
-            if (buffer.length > 0) {
-                let element = buffer[0];
-                let letter = element[0];
-                buffer[0] = element.slice(1);
-                
-                raw_message += letter;
-                
-                // Update special block flags
-                if (letter === '`' && raw_message.endsWith('```')) {
-                    inCodeBlock = !inCodeBlock;
-                } else if (letter === '$' && raw_message.endsWith('$$')) {
-                    inMathBlock = !inMathBlock;
-                }
-                const inSpecialContext = inCodeBlock || inMathBlock;
-        
-                if ((markdownSpecialChars.has(letter) && !inSpecialContext) || letter === " " || letter === "\n") {
-                    // This is a weird situation, so let's wait until we parse again
-                    messages[messages.length - 1].content += letter;
+            let id = setInterval(async () => {
+                if (this.buffer.length > 0) {
+                    let element = this.buffer[0];
+                    let letter = element[0];
+                    this.buffer[0] = element.slice(1);
+                    
+                    raw_message += letter;
+                    
+                    // Update special block flags
+                    if (letter === '`' && raw_message.endsWith('```')) {
+                        inCodeBlock = !inCodeBlock;
+                    } else if (letter === '$' && raw_message.endsWith('$$')) {
+                        inMathBlock = !inMathBlock;
+                    }
+                    const inSpecialContext = inCodeBlock || inMathBlock;
+            
+                    if ((markdownSpecialChars.has(letter) && !inSpecialContext) || letter === " " || letter === "\n") {
+                        // This is a weird situation, so let's wait until we parse again
+                        this.messages[this.messages.length - 1].content += letter;
+                    } else {
+                        this.messages[this.messages.length - 1].content = await marked(raw_message);
+                    }
+                    
+                    if (this.buffer[0].length === 0) {
+                        this.buffer = this.buffer.slice(1);
+                    }
                 } else {
-                    messages[messages.length - 1].content = await marked(raw_message);
+                    if (!this.currentlyGenerating) {
+                        clearInterval(id);
+                        // Final parse to make sure everything is correctly parsed
+                        this.messages[this.messages.length - 1].content = await marked(raw_message);
+                        resolve();
+                    }
                 }
-                
-                if (buffer[0].length === 0) {
-                    buffer = buffer.slice(1);
-                }
-            } else {
-                if (!currentlyGenerating) {
-                    clearInterval(id);
-                    // Final parse to make sure everything is correctly parsed
-                    messages[messages.length - 1].content = await marked(raw_message);
-                    resolve();
-                }
-            }
-        }, 5);
-    });
+            }, 5);
+        });
+    }
+
+
+    async prompt_llm(prompt: string) {
+        this.is_empty = false;
+        this.currentlyPrintingResponse = true;
+        this.messages.push({
+            "role": "user",
+            "content": prompt
+        })
+        this.fetch_response(prompt);
+        await this.print_buffer_content();
+        this.currentlyPrintingResponse = false;
+    }
+
+    isCurrentlyGenerating(): boolean {
+        return this.currentlyGenerating || this.currentlyPrintingResponse;
+    }
 }
 
-export async function prompt_llm(prompt: string) {
-    currentlyPrintingResponse = true;
-    messages.push({
-        "role": "user",
-        "content": prompt
-    })
-    fetch_response(prompt);
-    await print_buffer_content();
-    currentlyPrintingResponse = false;
+
+export class ChatsState {
+    chats: Array<Chat> = $state([]);
+    focusedChatIdx: number | null = $state(null);
+
+    async createNewChat() {
+        if (this.chats.length > 0 && this.chats[this.chats.length - 1].is_empty) {
+            return;
+        }
+        let newchat = new Chat();
+        this.chats.push(newchat);
+        this.focusedChatIdx = this.chats.length - 1;
+        newchat.buffer = ["Bonjour, je suis l'assistant de Nathan, promptez-moi !"];
+        await newchat.print_buffer_content();
+        newchat.currentlyPrintingResponse = false;
+    }
+
+    async prune() {
+        if (this.chats[this.chats.length - 1].is_empty) {
+            this.chats.pop();
+            this.focusedChatIdx = null;
+        }
+    }
 }
 
-export async function reset() {
-    currentlyPrintingResponse = true;
-    messages.splice(0, messages.length);
-    buffer = ["Bonjour, je suis l'assistant de Nathan, promptez-moi !"];
-    await print_buffer_content();
-    currentlyPrintingResponse = false;
-}
+export let chatsState: ChatsState = new ChatsState();
 
-export function isCurrentlyGenerating(): boolean {
-    return currentlyPrintingResponse;
-}
+
 
 </script>
