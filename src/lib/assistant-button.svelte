@@ -27,15 +27,15 @@ let { onclick }: { onclick: () => void} = $props();
     </picture>
 </div>
 
-
 <style>
-
 .llm-button-wrapper {
     position: fixed;
-    bottom: 40px;
-    right: 40px;
-    width: 66px;
-    height: 66px;
+    bottom: 20px;
+    right: 20px;
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    overflow: hidden;
 }
 
 .llm-button-wrapper:hover {
@@ -54,14 +54,15 @@ let { onclick }: { onclick: () => void} = $props();
 }
 
 .llm-button-img {
-    position: relative;
-    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 60px;
     height: 60px;
     border-radius: 50%;
+    border: 1px solid white;
     object-fit: cover;
-    margin: 3px;
-    background: white;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 
