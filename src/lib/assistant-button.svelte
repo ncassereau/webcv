@@ -9,7 +9,7 @@ let { onclick }: { onclick: () => void} = $props();
 <div
     class="llm-button-wrapper"
     in:fade={{ duration: 200 }}
-    out:fade={{ duration: 200 }}
+    out:fade={{ duration: 50 }}
 >
     <div class="llm-button-gradient"></div>
     <picture
