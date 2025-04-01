@@ -32,7 +32,7 @@ let { chat }: { chat: Chat | null } = $props();
     width: 100%;
     max-height: 80vh;
     min-height: 200px;
-    gap: 20px;
+    gap: var(--spacing-lg);
 }
 
 .message {
@@ -40,10 +40,17 @@ let { chat }: { chat: Chat | null } = $props();
     overflow-wrap: break-word;
     max-width: 70%;
     width: fit-content;
-    padding: 10px 15px;
+    min-width: min(250px, fit-content);
+    padding: var(--spacing-sm) var(--spacing-md);
     border-radius: 18px;
     background-color: #676767;
     color: #fff;
+}
+
+@media (max-width: 900px) {
+    .message {
+        max-width: 100%;
+    }
 }
 
 .user {
@@ -63,8 +70,8 @@ let { chat }: { chat: Chat | null } = $props();
     .chat-messages .message h3
 ) {
     font-weight: 700;
-    margin-top: 0.25rem;
-    margin-bottom: 0.5rem;
+    margin-top: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
     color: #a3c5ff;
 }
 
@@ -91,14 +98,14 @@ let { chat }: { chat: Chat | null } = $props();
 }
 
 :global(.chat-messages .message :not(pre) code) {
-    padding: 5px;
+    padding: var(--spacing-xs);
     font-size: 0.875rem;
 }
 
 :global(.chat-messages .message pre) {
-    padding: 10px;
+    padding: var(--spacing-sm);
     overflow-x: auto;
-    margin: 1rem 0;
+    margin: var(--spacing-md) 0;
     border: 1px solid #3e4451;
 }
 
@@ -108,21 +115,21 @@ let { chat }: { chat: Chat | null } = $props();
 }
 
 :global(.chat-messages .message ul, .chat-messages .message ol) {
-    padding-left: 1.5rem;
-    margin: 0.75rem 0;
+    padding-left: var(--spacing-lg);
+    margin: var(--spacing-sm) 0;
 }
 
 :global(.chat-messages .message li) {
-    margin-bottom: 0.3rem;
+    margin-bottom: var(--spacing-xs);
 }
 
 :global(.chat-messages .message blockquote) {
     border-left: 4px solid #dfe2e5;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
-    padding: 0px 1rem 1px 1rem;
+    padding: 0px var(--spacing-md) 1px var(--spacing-md);
     background-color: grey;
-    margin: 1rem 0;
+    margin: var(--spacing-md) 0;
 }
 
 :global(.chat-messages .message a) {
@@ -137,7 +144,7 @@ let { chat }: { chat: Chat | null } = $props();
 :global(.chat-messages .message table) {
     border-collapse: collapse;
     width: 100%;
-    margin: 1rem 0;
+    margin: var(--spacing-md) 0;
 }
 
 :global(.chat-messages .message th, .chat-messages .message td) {
@@ -153,14 +160,14 @@ let { chat }: { chat: Chat | null } = $props();
 :global(.chat-messages .message img) {
     max-width: 100%;
     border-radius: 5px;
-    margin: 1rem 0;
+    margin: var(--spacing-md) 0;
 }
 
 :global(.chat-messages .message hr) {
     height: 1px;
     background-color: #eaecef;
     border: none;
-    margin: 1.5rem 0;
+    margin: var(--spacing-lg) 0;
 }
 
 </style>

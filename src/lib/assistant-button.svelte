@@ -38,6 +38,7 @@ let { onclick }: { onclick: () => void} = $props();
     height: 68px;
     border-radius: 50%;
     overflow: hidden;
+    z-index: 1001;
 }
 
 .llm-button-wrapper:hover {

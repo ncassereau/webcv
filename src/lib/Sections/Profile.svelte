@@ -105,6 +105,7 @@
     </div>
 </div>
 
+
 <style>
 
 .profile-container {
@@ -115,25 +116,33 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
     position: relative;
+    background-color: black;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    width: 100%;
 }
 
 .profile-img {
     width: 100%;
     height: auto;
     object-fit: cover;
-    border-radius: 4px;
+    max-width: 56.25rem;      /* 900px */
+    max-height: 85vh;
+    aspect-ratio: 4/3;
 }
 
 .profile-name {
     position: absolute;
     left: 0;
     bottom: 0;
-    padding: 20px;
+    padding: 1rem;
     color: white;
     font-weight: 700;
-    font-size: 20pt;
+    font-size: clamp(1rem, 5vw, 1.5rem); /* 16px à 24px */
+    background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
+    width: 100%;
+    text-align: center;
 }
 
 .profile-name .last-name {
@@ -141,21 +150,22 @@
 }
 
 .contact-info {
-    padding: 15px 20px;
+    padding: var(--spacing-md) var(--spacing-lg);
+    width: 100%;
 }
 
 .contact-item {
     display: flex;
     align-items: center;
-    padding: 5px;
+    padding: var(--spacing-xs);
 }
 
 .contact-icon {
-    min-width: 30px;
-    width: 30px;
-    height: 30px;
+    min-width: var(--icon-size);
+    width: var(--icon-size);
+    height: var(--icon-size);
     fill: var(--title-color);
-    margin-right: 12px;
+    margin-right: 0.75rem;   /* 12px */
     flex-shrink: 0;
 }
 
@@ -163,7 +173,7 @@
     display: inline-block;
     line-height: 1.5;
     font-family: 'Arial', sans-serif;
-    margin-right: 5px;
+    margin-right: var(--spacing-xs);
 }
 
 .contact-link {
@@ -177,27 +187,17 @@
     text-overflow: ellipsis;
     cursor: pointer;
     transition: all 0.3s ease;
-    border-radius: 4px;
+    border-radius: var(--border-radius);
 }
 
 .contact-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-0.125rem); /* -2px */
+    box-shadow: 0.25rem 0.25rem var(--shadow-size) rgba(0, 0, 0, 0.1);
 }
 
-@media (max-width: 900px) {
+@media(max-width: 56.25rem) { /* 900px */
     .profile-img {
-        max-width: 180px;
-    }
-}
-
-@media (max-width: 480px) {
-    .profile-img {
-        max-width: 150px;
-    }
-    
-    .contact-link {
-        white-space: normal;
+        max-width: 37.5rem; /* 600px */
     }
 }
 

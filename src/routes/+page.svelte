@@ -4,6 +4,7 @@ import AssistantButton from "$lib/assistant-button.svelte";
 import LlmModal from "$lib/llm/LLMModal.svelte";
 import SectionContainer from "$lib/Sections/SectionContainer.svelte";
 import SubSectionContainer from "$lib/Sections/SubSectionContainer.svelte";
+import WorkExperience from "$lib/Sections/WorkExperience.svelte";
 import Teachings from "$lib/Sections/Teachings.svelte";
 import Profile from "$lib/Sections/Profile.svelte";
 
@@ -28,6 +29,12 @@ let displayLLM: boolean = $state(false);
     <div class="col-container">
         <SectionContainer>
             <SubSectionContainer>
+                <WorkExperience />
+            </SubSectionContainer>
+        </SectionContainer>
+
+        <SectionContainer>
+            <SubSectionContainer>
                 <Teachings />
             </SubSectionContainer>
         </SectionContainer>
@@ -36,6 +43,18 @@ let displayLLM: boolean = $state(false);
 
 
 <style>
+
+:root {
+    --spacing-xs: 0.3125rem;
+    --spacing-sm: 0.625rem;
+    --spacing-md: 0.9375rem;
+    --spacing-lg: 1.25rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 2.5rem;
+    --border-radius: 0.25rem;
+    --icon-size: 1.875rem;
+    --shadow-size: 0.5rem;
+}
 
 :global(body) {
     background-color: #f0f0f0;
@@ -53,10 +72,9 @@ let displayLLM: boolean = $state(false);
 .page-container {
     display: grid;
     grid-template-columns: minmax(300px, 1fr) minmax(450px, 2fr);
-    gap: 20px;
-    /* max-width: 1200px; */
+    gap: var(--spacing-lg);
     margin: 0 auto;
-    padding: 20px;
+    padding: var(--spacing-lg);
     width: 100%;
 }
 
@@ -64,6 +82,7 @@ let displayLLM: boolean = $state(false);
     display: flex;
     flex-direction: column;
     width: 100%;
+    min-width: 300px;
 }
 
 .col-container > :global(*) {
@@ -73,13 +92,17 @@ let displayLLM: boolean = $state(false);
 @media (max-width: 900px) {
     .page-container {
         grid-template-columns: 1fr;
-        padding: 15px;
+        padding: var(--spacing-md);
+    }
+
+    .col-container {
+        max-width: 100vw;
     }
 }
 
 @media (max-width: 480px) {
     .page-container {
-        padding: 10px;
+        padding: var(--spacing-sm);
     }
 }
 

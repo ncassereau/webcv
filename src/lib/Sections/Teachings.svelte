@@ -8,8 +8,8 @@ let logos = [
     { url: '/api/placeholder/100/50', alt: 'Logo 5' },
     { url: '/api/placeholder/100/50', alt: 'Logo 6' }
 ];
-let animationDuration = 10;
-let pauseOnHover = true;
+let animationDuration: number = 10;
+let pauseOnHover: boolean = false;
 
 let hoverringBanner: boolean = $state(false);
 
@@ -35,21 +35,21 @@ main courses I gave with my fellow ML Engineers at IDRIS.
 
 <ul>
     <a
-        href="https://cnrsformation.cnrs.fr/introduction-pratique-au-deep-learning?mc=Deep%20Learning%20-"
+        href="https://cnrsformation.cnrs.fr/introduction-pratique-au-deep-learning"
         target="_blank" rel="noopener noreferrer">
         <li>
             Introduction pratique au Deep Learning
         </li>
     </a>
     <a
-        href="https://cnrsformation.cnrs.fr/architectures-du-deep-learning?mc=Deep%20Learning%20-"
+        href="https://cnrsformation.cnrs.fr/architectures-du-deep-learning"
         target="_blank" rel="noopener noreferrer">
         <li>
             Architectures du Deep Learning
         </li>
     </a>
     <a
-        href="https://cnrsformation.cnrs.fr/deep-learning-optimise-sur-supercalculateur?mc=Deep%20Learning%20-"
+        href="https://cnrsformation.cnrs.fr/deep-learning-optimise-sur-supercalculateur"
         target="_blank" rel="noopener noreferrer">
         <li>
             Deep Learning optimisé sur supercalculateur
@@ -76,11 +76,14 @@ main courses I gave with my fellow ML Engineers at IDRIS.
         style:animation-duration="{animationDuration}s"
         style:animation-play-state={animationPlayState}
     >
-        {#each [...logos, ...logos] as logo, i}
+        {#each [...logos, ...logos, ...logos, ...logos] as logo, i}
             <div class="logo-item">
                 <img src={logo.url} alt={logo.alt} />
             </div>
         {/each}
+    </div>
+    <div class="logo-banner-footer">
+        They trusted me and my colleagues for our teachings
     </div>
 </div>
 
@@ -94,15 +97,22 @@ Lorem ipsum dolor si amet
     width: 100%;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+    margin-bottom: var(--spacing-lg);
     background-color: #f8f9fa;
-    padding: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+.logo-banner-footer {
+    font-style: italic;
+    font-size: 8pt;
+    text-align: center;
 }
 
 .logo-banner-inner {
     display: flex;
     animation: scroll linear infinite;
     width: max-content;
+    padding: 1rem;
 }
 
 .logo-item {
@@ -129,7 +139,7 @@ Lorem ipsum dolor si amet
 ul {
     list-style: none;
     padding: 0;
-    margin: 20px 0;
+    margin: var(--spacing-lg) 0;
     font-family: 'Arial', sans-serif;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-color: #f5f5f5;
@@ -137,8 +147,7 @@ ul {
 
 li {
     position: relative;
-    padding: 10px 15px 10px 40px;
-    margin-bottom: 10px;
+    padding: var(--spacing-md) var(--spacing-lg) var(--spacing-md) var(--spacing-xxl);
     border-radius: 5px;
     transition: all 0.3s ease;
 }
@@ -146,7 +155,7 @@ li {
 li::before {
     content: "";
     position: absolute;
-    left: 15px;
+    left: var(--spacing-md);
     top: 50%;
     transform: translateY(-50%);
     width: 12px;

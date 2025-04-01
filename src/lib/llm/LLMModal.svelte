@@ -157,8 +157,9 @@ onDestroy(() => {
     display: flex;
     margin-top: 50px;
     justify-content: center;
-    padding: 0 10px;
+    padding: 0 var(--spacing-sm);
     box-sizing: border-box;
+    min-width: 300px;
 }
 
 .modal {
@@ -183,7 +184,7 @@ onDestroy(() => {
     position: relative;
     display: flex;
     align-items: center;
-    padding: 14px 20px;
+    padding: var(--spacing-md) var(--spacing-lg);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 

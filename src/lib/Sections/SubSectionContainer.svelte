@@ -15,7 +15,7 @@ let { children }: { children: Snippet } = $props();
 <style>
 
 .subsection-container {
-    padding: 20px;
+    padding: var(--spacing-lg);
 }
 
 .subsection-container :global(h1) {
@@ -30,8 +30,8 @@ let { children }: { children: Snippet } = $props();
 
 .subsection-container :global(h1 svg) {
     fill: var(--title-color);
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
 }
 
 </style>

@@ -114,7 +114,7 @@ function focus(idx: number) {
 
 .message-preview-container, .title {
     border-bottom: 1px solid #eee;
-    padding: 10px;
+    padding: var(--spacing-sm);
     transition: background-color 0.2s ease;
 }
 
