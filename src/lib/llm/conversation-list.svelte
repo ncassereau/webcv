@@ -47,7 +47,6 @@ function focus(idx: number) {
     role="none"
     bind:this={whiteRectElement}
     onmouseenter={show}
-    
     >
 </div>
 

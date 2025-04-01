@@ -197,8 +197,8 @@ onDestroy(() => {
 }
 
 svg.crossButton {
-    width: 15px;
-    height: 15px;
+    width: 30px;
+    height: 30px;
     stroke-width: 10px;
     stroke: white;
     cursor: pointer;

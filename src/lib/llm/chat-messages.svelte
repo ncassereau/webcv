@@ -103,7 +103,7 @@ let { chat }: { chat: Chat | null } = $props();
 }
 
 :global(.chat-messages .message p) {
-    margin: 0.75rem 0;
+    margin: 0;
     line-height: 1.6;
 }
 
