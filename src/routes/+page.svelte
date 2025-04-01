@@ -3,6 +3,8 @@
 import AssistantButton from "$lib/assistant-button.svelte";
 import LlmModal from "$lib/llm/LLMModal.svelte";
 import SectionContainer from "$lib/Sections/SectionContainer.svelte";
+import SubSectionContainer from "$lib/Sections/SubSectionContainer.svelte";
+import Teachings from "$lib/Sections/Teachings.svelte";
 import Profile from "$lib/Sections/Profile.svelte";
 
 let displayLLM: boolean = $state(false);
@@ -24,7 +26,11 @@ let displayLLM: boolean = $state(false);
         </SectionContainer>
     </div>
     <div class="col-container">
-
+        <SectionContainer>
+            <SubSectionContainer>
+                <Teachings />
+            </SubSectionContainer>
+        </SectionContainer>
     </div>
 </div>
 
