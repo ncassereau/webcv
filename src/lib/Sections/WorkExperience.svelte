@@ -72,6 +72,7 @@ onMount(() => {
             {#if expandedItems.has("idris")}
                 <div class="long-description" transition:slide={{ duration: 300 }}>
                     Test
+                    <a target="_self" href="#teachings">go to teachings</a>
                 </div>
             {/if}
 
@@ -160,5 +161,36 @@ onMount(() => {
     background-color: grey;
 }
 
+hr {
+    height: 12px;
+    width: 85%;
+    border: none;
+    position: relative;
+    margin: 30px auto;
+}
+
+hr:before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #ddd;
+}
+
+hr:after {
+    content: "•";
+    position: absolute;
+    left: 50%;
+    top: 0px;
+    transform: translateX(-50%);
+    background-color: white;
+    padding: 0 15px;
+    color: #555;
+    font-size: 12px;
+    transform: scale(2);
+    line-height: 12px;
+}
 
 </style>
