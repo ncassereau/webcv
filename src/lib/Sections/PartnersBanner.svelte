@@ -1,10 +1,10 @@
 <script lang="ts">
 
-import { onMount, onDestroy } from "svelte";
-
 import { fade } from "svelte/transition";
 import { cubicOut } from "svelte/easing";
 import { Tween } from "svelte/motion";
+
+import SeeMoreButton from "$lib/utils/SeeMoreButton.svelte";
 
 let logos = [
     { url: '/Partners/rte.svg', alt: 'RTE' },
@@ -16,7 +16,7 @@ let logos = [
     { url: '/Partners/cnrs.svg', alt: 'CNRS' },
     { url: '/Partners/centralesupelec.svg', alt: 'CentraleSupélec' },
     { url: '/Partners/collegedefrance.webp', alt: 'Collège de France' },
-    { url: '/Partners/ens.webp', alt: 'ENS' },
+    { url: '/Partners/ens.webp', alt: 'ENS Paris Saclay' },
     { url: '/Partners/idemia.svg', alt: 'IDEMIA' },
     { url: '/Partners/inria.svg', alt: 'INRIA' },
     { url: '/Partners/inserm.svg', alt: 'INSERM' },
@@ -38,13 +38,6 @@ function updateContainerSize() {
     containerHeight.target = expanded ? logoContainer.scrollHeight : 100;
 }
 
-function toggleLogosDisplay() {
-    expanded = !expanded;
-    updateContainerSize();
-}
-
-let buttonText = $derived(expanded ? "Collapse" : "See all partners");
-
 </script>
 
 
@@ -59,6 +52,7 @@ let buttonText = $derived(expanded ? "Collapse" : "See all partners");
                 <img
                     src={logo.url}
                     alt={logo.alt}
+                    title={logo.alt}
                     loading="lazy"
                     class="logo-image"
                     draggable="false"
@@ -77,17 +71,12 @@ let buttonText = $derived(expanded ? "Collapse" : "See all partners");
         {/if}
     </div>
     
-    <button class="toggle-button" onclick={toggleLogosDisplay}>
-        <span class="button-text">{buttonText}</span>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            {#if !expanded}
-                <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
-            {:else}
-                <path d="m18 15-6-6-6 6" />
-            {/if}
-        </svg>
-    </button>
-    
+    <SeeMoreButton
+        enlargeText="See all partners"
+        onclick={updateContainerSize}
+        bind:expanded
+    />
+
     <div class="partners-footer">
         They trusted me and my colleagues for our teachings
     </div>
@@ -134,7 +123,7 @@ let buttonText = $derived(expanded ? "Collapse" : "See all partners");
     transition: transform 0.3s ease;
 }
 
-.logo-item:hover .logo-image {
+.logo-item .logo-image:hover {
     transform: scale(1.1);
 }
 
@@ -166,44 +155,6 @@ let buttonText = $derived(expanded ? "Collapse" : "See all partners");
     pointer-events: none;
 }
 
-.toggle-button {
-    background-color: #f8f9fa;
-    border: 1px solid #e9ecef;
-    border-radius: 30px;
-    padding: 0.5rem 1.5rem;
-    margin: 0.5rem auto 1rem;
-
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    z-index: 20;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    pointer-events: auto;
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-.toggle-button:hover {
-    background-color: #f1f3f5;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-}
-
-.toggle-button svg {
-    width: 20px;
-    height: 20px;
-    fill: none;
-    stroke: black;
-    stroke-width: 2;
-    stroke-linecap: round;
-}
-
-.button-text {
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
 .partners-footer {
     font-style: italic;
     font-size: 8pt;
@@ -228,10 +179,6 @@ let buttonText = $derived(expanded ? "Collapse" : "See all partners");
         width: 80px;
         height: 60px;
     }
-    
-    .button-text {
-        font-size: 0.8rem;
-    }
 }
 
 @media (prefers-reduced-motion) {
@@ -239,7 +186,7 @@ let buttonText = $derived(expanded ? "Collapse" : "See all partners");
         transition: none;
     }
     
-    .logo-image, .toggle-button {
+    .logo-image {
         transition: none;
     }
 }
