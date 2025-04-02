@@ -2,11 +2,11 @@
     
 import type { Snippet } from "svelte";
 
-let { children }: { children: Snippet } = $props();
+let { id = "", children }: { id: string, children: Snippet } = $props();
 
 </script>
 
-<div class="section-container">
+<div {id} class="section-container">
     {@render children()}
 </div>
 
@@ -14,10 +14,9 @@ let { children }: { children: Snippet } = $props();
 <style>
 
 .section-container {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     border-radius: 4px;
     background-color: #fff;
-    margin-bottom: var(--spacing-lg);
     width: 100%;
     box-sizing: border-box;
     height: fit-content;
@@ -54,10 +53,14 @@ let { children }: { children: Snippet } = $props();
     padding: var(--spacing-md) var(--spacing-lg);
 }
 
-.section-container :global(.section-header i) {
-    color: #4aa389;
-    margin-right: var(--spacing-sm);
-    font-size: 1.2rem;
+:target {
+    scroll-margin-top: 2rem;
+    animation: highlight-fade 4s ease;
+}
+
+@keyframes highlight-fade {
+    from { background-color: rgba(255, 230, 0, 0.2); }
+    to { background-color: transparent; }
 }
 
 </style>

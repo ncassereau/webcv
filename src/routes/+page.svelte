@@ -22,18 +22,18 @@ let displayLLM: boolean = $state(false);
 
 <div class="page-container">
     <div class="col-container">
-        <SectionContainer>
+        <SectionContainer id="profile">
             <Profile />
         </SectionContainer>
     </div>
     <div class="col-container">
-        <SectionContainer>
+        <SectionContainer id="work-exp">
             <SubSectionContainer>
                 <WorkExperience />
             </SubSectionContainer>
         </SectionContainer>
 
-        <SectionContainer>
+        <SectionContainer id="teachings">
             <SubSectionContainer>
                 <Teachings />
             </SubSectionContainer>
@@ -60,7 +60,7 @@ let displayLLM: boolean = $state(false);
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', Arial, sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: #333;
     line-height: 1.6;
 }
@@ -81,6 +81,7 @@ let displayLLM: boolean = $state(false);
 .col-container {
     display: flex;
     flex-direction: column;
+    gap: var(--spacing-lg);
     width: 100%;
     min-width: 300px;
 }

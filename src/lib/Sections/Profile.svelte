@@ -118,16 +118,20 @@
     align-items: center;
     position: relative;
     background-color: black;
-    border-radius: var(--border-radius);
     overflow: hidden;
     width: 100%;
+}
+
+.profile-header picture {
+    font-size: 0;
+    line-height: 0;
 }
 
 .profile-img {
     width: 100%;
     height: auto;
     object-fit: cover;
-    max-width: 56.25rem;      /* 900px */
+    max-width: 30rem;
     max-height: 85vh;
     aspect-ratio: 4/3;
 }
@@ -139,7 +143,7 @@
     padding: 1rem;
     color: white;
     font-weight: 700;
-    font-size: clamp(1rem, 5vw, 1.5rem); /* 16px à 24px */
+    font-size: clamp(1rem, 5vw, 1.5rem);
     background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
     width: 100%;
     text-align: center;
@@ -165,14 +169,13 @@
     width: var(--icon-size);
     height: var(--icon-size);
     fill: var(--title-color);
-    margin-right: 0.75rem;   /* 12px */
+    margin-right: 0.75rem;
     flex-shrink: 0;
 }
 
 .contact-text {
     display: inline-block;
     line-height: 1.5;
-    font-family: 'Arial', sans-serif;
     margin-right: var(--spacing-xs);
 }
 
@@ -191,14 +194,8 @@
 }
 
 .contact-link:hover {
-    transform: translateY(-0.125rem); /* -2px */
+    transform: translateY(-0.125rem);
     box-shadow: 0.25rem 0.25rem var(--shadow-size) rgba(0, 0, 0, 0.1);
-}
-
-@media(max-width: 56.25rem) { /* 900px */
-    .profile-img {
-        max-width: 37.5rem; /* 600px */
-    }
 }
 
 </style>
