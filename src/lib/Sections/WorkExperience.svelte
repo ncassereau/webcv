@@ -184,12 +184,11 @@ hr:after {
     position: absolute;
     left: 50%;
     top: 0px;
-    transform: translateX(-50%);
+    transform: translateX(-50%) scale(2);
     background-color: white;
     padding: 0 15px;
     color: #555;
     font-size: 12px;
-    transform: scale(2);
     line-height: 12px;
 }
 

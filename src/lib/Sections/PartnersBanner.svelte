@@ -27,7 +27,7 @@ let logos = [
     { url: '/Partners/pasteur.svg', alt: 'Institut Pasteur' },
     { url: '/Partners/polytechnique.webp', alt: 'École Polytechnique' },
     { url: '/Partners/sorbonne.svg', alt: 'Sorbonne Université' },
-    { url: '/Partners/synchroton.webp', alt: 'Synchrotron Soleil' },
+    { url: '/Partners/synchrotron.webp', alt: 'Synchrotron Soleil' },
 ];
 
 let expanded = $state(false);
@@ -54,7 +54,6 @@ function updateContainerSize() {
                     src={logo.url}
                     alt={logo.alt}
                     title={logo.alt}
-                    loading="lazy"
                     class="logo-image"
                     draggable="false"
                 />
