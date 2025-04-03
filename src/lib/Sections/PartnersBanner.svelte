@@ -7,10 +7,13 @@ import { Tween } from "svelte/motion";
 import SeeMoreButton from "$lib/utils/SeeMoreButton.svelte";
 
 let logos = [
+    { url: '/Partners/nvidia.svg', alt: "NVIDIA" },
     { url: '/Partners/rte.svg', alt: 'RTE' },
     { url: '/Partners/engie.svg', alt: 'ENGIE' },
     { url: '/Partners/cea.svg', alt: 'CEA' },
+    { url: '/Partners/ministere.svg', alt: 'Ministères des finances / de la justice / de la transition écologique / de l\'intérieur' },
     { url: '/Partners/edf.svg', alt: 'EDF' },
+    { url: '/Partners/thales.svg', alt: 'Thales' },
     { url: '/Partners/meteofrance.svg', alt: 'MétéoFrance' },
     { url: '/Partners/francetravail.svg', alt: 'France Travail' },
     { url: '/Partners/cnrs.svg', alt: 'CNRS' },
@@ -20,13 +23,11 @@ let logos = [
     { url: '/Partners/idemia.svg', alt: 'IDEMIA' },
     { url: '/Partners/inria.svg', alt: 'INRIA' },
     { url: '/Partners/inserm.svg', alt: 'INSERM' },
-    { url: '/Partners/ministere.svg', alt: 'Ministères des finances / de la justice / de la transition écologique / de l\'intérieur' },
     { url: '/Partners/onera.svg', alt: 'ONERA' },
     { url: '/Partners/pasteur.svg', alt: 'Institut Pasteur' },
     { url: '/Partners/polytechnique.webp', alt: 'École Polytechnique' },
     { url: '/Partners/sorbonne.svg', alt: 'Sorbonne Université' },
     { url: '/Partners/synchroton.webp', alt: 'Synchrotron Soleil' },
-    { url: '/Partners/thales.svg', alt: 'Thales' }
 ];
 
 let expanded = $state(false);
