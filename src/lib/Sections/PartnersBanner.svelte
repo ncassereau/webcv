@@ -7,20 +7,21 @@ import { Tween } from "svelte/motion";
 import SeeMoreButton from "$lib/utils/SeeMoreButton.svelte";
 
 let logos = [
-    { url: '/Partners/nvidia.svg', alt: "NVIDIA" },
+    { url: '/Partners/nvidia.svg', alt: 'NVIDIA' },
     { url: '/Partners/rte.svg', alt: 'RTE' },
-    { url: '/Partners/engie.svg', alt: 'ENGIE' },
+    { url: '/Partners/thales.svg', alt: 'Thales' },
+    { url: '/Partners/idemia.svg', alt: 'IDEMIA' },
+    { url: '/Partners/guerbet.webp', alt: 'Guerbet' },
     { url: '/Partners/cea.svg', alt: 'CEA' },
     { url: '/Partners/ministere.svg', alt: 'Ministères des finances / de la justice / de la transition écologique / de l\'intérieur' },
     { url: '/Partners/edf.svg', alt: 'EDF' },
-    { url: '/Partners/thales.svg', alt: 'Thales' },
     { url: '/Partners/meteofrance.svg', alt: 'MétéoFrance' },
     { url: '/Partners/francetravail.svg', alt: 'France Travail' },
     { url: '/Partners/cnrs.svg', alt: 'CNRS' },
     { url: '/Partners/centralesupelec.svg', alt: 'CentraleSupélec' },
     { url: '/Partners/collegedefrance.webp', alt: 'Collège de France' },
     { url: '/Partners/ens.webp', alt: 'ENS Paris Saclay' },
-    { url: '/Partners/idemia.svg', alt: 'IDEMIA' },
+    { url: '/Partners/engie.svg', alt: 'ENGIE' },
     { url: '/Partners/inria.svg', alt: 'INRIA' },
     { url: '/Partners/inserm.svg', alt: 'INSERM' },
     { url: '/Partners/onera.svg', alt: 'ONERA' },
@@ -72,14 +73,10 @@ function updateContainerSize() {
     </div>
     
     <SeeMoreButton
-        enlargeText="See all partners"
+        enlargeText="See all those who trusted me and my colleagues for our teachings"
         onclick={updateContainerSize}
         bind:expanded
     />
-
-    <div class="partners-footer">
-        They trusted me and my colleagues for our teachings
-    </div>
 </div>
 
 
@@ -153,14 +150,6 @@ function updateContainerSize() {
     justify-content: center;
     padding-bottom: 15px;
     pointer-events: none;
-}
-
-.partners-footer {
-    font-style: italic;
-    font-size: 8pt;
-    text-align: center;
-    padding-top: 0.5rem;
-    margin-top: 0.5rem;
 }
 
 @media (max-width: 768px) {

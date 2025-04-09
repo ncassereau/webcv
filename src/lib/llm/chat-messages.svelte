@@ -20,6 +20,7 @@ let { chat }: { chat: Chat | null } = $props();
                 {/if}
             </div>
         {/each}
+        <div class="message-padding-phantom"></div>
     {/if}
 </div>
 
@@ -45,6 +46,12 @@ let { chat }: { chat: Chat | null } = $props();
     border-radius: 18px;
     background-color: #676767;
     color: #fff;
+}
+
+.message-padding-phantom {
+    height: 0.1px;
+    width: 100%;
+    flex-shrink: 0;
 }
 
 @media (max-width: 900px) {

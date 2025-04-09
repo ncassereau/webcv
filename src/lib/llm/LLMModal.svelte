@@ -241,8 +241,8 @@ svg.crossButton:hover {
     flex-grow: 1;
     height: 100%;
     overflow-y: auto;
-    margin-bottom: 8px;
     padding: 12px 16px 0 16px;
+    scroll-padding-bottom: 2rem;
 }
 
 .user-input {
