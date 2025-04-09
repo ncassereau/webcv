@@ -7,6 +7,7 @@ import SubSectionContainer from "$lib/Sections/SubSectionContainer.svelte";
 import WorkExperience from "$lib/Sections/WorkExperience.svelte";
 import Teachings from "$lib/Sections/Teachings.svelte";
 import Profile from "$lib/Sections/Profile.svelte";
+import Footer from "$lib/Footer.svelte";
 
 let displayLLM: boolean = $state(false);
 
@@ -40,6 +41,8 @@ let displayLLM: boolean = $state(false);
         </SectionContainer>
     </div>
 </div>
+
+<Footer />
 
 
 <style>
