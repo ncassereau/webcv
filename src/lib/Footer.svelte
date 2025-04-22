@@ -8,7 +8,7 @@ let repoUrl = $state("https://github.com/ncassereau/webcv");
 <footer>
     <div class="footer-container">
         <div class="github-link">
-        <a 
+        <a
             href={repoUrl} 
             target="_blank" 
             rel="noopener noreferrer" 

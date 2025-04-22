@@ -2,7 +2,7 @@
     
 import { marked } from 'marked';
 
-import { generate } from "./fake_generation.svelte";
+import { generate } from "./ollama.svelte";
     
     
 const markdownSpecialChars = new Set(['-', '#', '*', '>', '_', '=', '+', '`', '$']);
@@ -19,7 +19,7 @@ export class Chat {
     async fetch_response(prompt: string) {
         this.currentlyGenerating = true;
         for await (const item of generate()) {
-            this.buffer.push(item.name);
+            this.buffer.push(item);
         }
         this.currentlyGenerating = false;
     }
