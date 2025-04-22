@@ -1,24 +1,47 @@
 <script module lang="ts">
     
 import { marked } from 'marked';
+import { Ollama } from "ollama";
 
-import { generate } from "./ollama.svelte";
-    
     
 const markdownSpecialChars = new Set(['-', '#', '*', '>', '_', '=', '+', '`', '$']);
 
+interface Message {
+    role: "user" | "assistant" | "system";
+    content: string;
+}
+
+let API_URL = "http://localhost:11434";
+let model = "qwen2.5-coder:1.5b";
+
+
+async function* ollama_generate(messages: Message[]) {
+    const ollama = new Ollama({ host: API_URL });
+    const response = await ollama.chat({
+        model: model,
+        messages: messages,
+        stream: true,
+    });
+    for await (const part of response) {
+        if (part.message.content.length > 0) {
+            yield part.message.content;
+        }
+    }
+}
+
+
 export class Chat {
 
-    messages: Array<{ "role": string, "content": string }> = $state([]);
+    messages: Message[] = $state([]);
     buffer: Array<string> = $state([]);
     currentlyGenerating: boolean = $state(false);
     currentlyPrintingResponse: boolean = $state(false);
     is_empty: boolean = true;
 
 
-    async fetch_response(prompt: string) {
+    async fetch_response(messages: Message[]) {
         this.currentlyGenerating = true;
-        for await (const item of generate()) {
+        for await (const item of ollama_generate(messages)) {
             this.buffer.push(item);
         }
         this.currentlyGenerating = false;
@@ -51,12 +74,18 @@ export class Chat {
                     }
                     const inSpecialContext = inCodeBlock || inMathBlock;
             
+                    let newMsg = {
+                        ...this.messages[this.messages.length - 1]
+                    };
                     if ((markdownSpecialChars.has(letter) && !inSpecialContext) || letter === " " || letter === "\n") {
                         // This is a weird situation, so let's wait until we parse again
-                        this.messages[this.messages.length - 1].content += letter;
+                        newMsg.content += letter;
                     } else {
-                        this.messages[this.messages.length - 1].content = await marked(raw_message);
+                        newMsg.content = await marked(raw_message);
                     }
+
+                    // Update the message in the messages array
+                    this.messages[this.messages.length - 1] = newMsg;
                     
                     if (this.buffer[0].length === 0) {
                         this.buffer = this.buffer.slice(1);
@@ -73,15 +102,11 @@ export class Chat {
         });
     }
 
-
     async prompt_llm(prompt: string) {
         this.is_empty = false;
         this.currentlyPrintingResponse = true;
-        this.messages.push({
-            "role": "user",
-            "content": prompt
-        })
-        this.fetch_response(prompt);
+        this.messages.push({"role": "user", "content": prompt});
+        this.fetch_response(this.messages.slice(1, this.messages.length));
         await this.print_buffer_content();
         this.currentlyPrintingResponse = false;
     }
@@ -119,7 +144,5 @@ export class ChatsState {
 }
 
 export let chatsState: ChatsState = new ChatsState();
-
-
 
 </script>

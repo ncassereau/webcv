@@ -83,17 +83,16 @@ function focus(idx: number) {
     position: absolute;
     opacity: 0;
     height: 100%;
-    width: 150px;
+    width: 75px;
 }
 
 .conv-list {
     position: absolute;
-    display: inline-block;
     box-shadow: 2px 0 8px rgba(0, 0, 0, 0.5);
     background-color: white;
     z-index: 1200;
     height: 100%;
-    max-width: 300px;
+    width: 300px;
     visibility: hidden;
     opacity: 0;
     transform: translateX(-20px);

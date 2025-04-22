@@ -10,6 +10,7 @@ import { chatsState } from "./inference.svelte";
 let { close } = $props();
 
 let user_input: string = $state("");
+let userTextArea: HTMLTextAreaElement;
 let chat = $derived(
     chatsState.focusedChatIdx === null ? null : chatsState.chats[chatsState.focusedChatIdx]
 );
@@ -38,6 +39,7 @@ onMount(() => {
     document.addEventListener("keydown", escape_exit);
     setTimeout(async () => {
         if (chatsState.focusedChatIdx === null) chatsState.createNewChat();
+        userTextArea.focus();
     }, 0); // Makes sure that this is executed after rendering
 });
 
@@ -109,6 +111,7 @@ onDestroy(() => {
                 <textarea
                     placeholder="Talk to NathanLM"
                     bind:value={user_input}
+                    bind:this={userTextArea}
                     disabled={chat?.isCurrentlyGenerating()}
                     onkeydown={ev => ev.key === "Enter" && ev.ctrlKey && submit_user_input()}
                     ></textarea>
@@ -232,7 +235,6 @@ svg.crossButton:hover {
 
 .sidebar {
     position: absolute;
-    width: 300px;
     height: 100%;
     flex-shrink: 0;
 }

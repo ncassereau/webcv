@@ -38,6 +38,7 @@
 		"vitest": "^3.0.0"
 	},
 	"dependencies": {
-		"marked": "^15.0.7"
+		"marked": "^15.0.7",
+		"ollama": "^0.5.15"
 	}
 }
