@@ -44,37 +44,35 @@ let expanded: boolean = $state(false);
 
 
 <div class="experience">
-    <div class="experience-container">
+    <div class="experience-card">
         <div class="exp-header">
-            <div class="job-title">{jobTitle}</div>
-            <div class="employer">{employer}</div>
+            <h3 class="job-title">{jobTitle}</h3>
+            <span class="employer">{employer}</span>
         </div>
-        <div class="exp-calendar">
-            {@render svgCalendar()} 
+        <div class="exp-details">
+            <div class="exp-time">
+            {@render svgCalendar()}
             <span class="exp-dates">
-                {#if current}
-                    {start} - <span class="current-exp">Ongoing</span>
-                {:else}
-                    {start} - {end}
-                {/if}
+                {start} - {#if current}<span class="current-exp">Ongoing</span>{:else}{end}{/if}
             </span>
-        </div>
-    </div>
-    {#if description !== null}
-        <div class="short-description">{description}</div>
-    {/if}
-    <div>
-        {#if expanded}
-            <div class="long-description" transition:slide={{ duration: 300 }}>
-                {@render children()}
             </div>
+            <SeeMoreButton 
+                collapseText="See less" 
+                enlargeText="See more" 
+                bind:expanded 
+                centered={false}
+            />
+        </div>
+        {#if description !== null}
+            <div class="short-description">{description}</div>
         {/if}
-
-        <SeeMoreButton
-            collapseText="See less"
-            enlargeText="See more"
-            bind:expanded
-        />
+        <div>
+            {#if expanded}
+                <div class="long-description" transition:slide={{ duration: 300 }}>
+                    {@render children()}
+                </div>
+            {/if}
+        </div>
     </div>
 
 </div>
@@ -88,77 +86,79 @@ let expanded: boolean = $state(false);
     gap: 1rem;
 }
 
-.experience-container {
-    display: grid;
-    gap: 0.5rem;
+.experience-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
 }
 
 .exp-header {
-    display: grid;
-    grid-template-columns: minmax(auto, max-content) minmax(auto, max-content);
-    gap: 0;
+    display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
+    gap: 0.5rem 1rem;
 }
 
 .job-title {
-    font-weight: bold;
-    font-size: clamp(1.1rem, 1rem + 0.5vw, 16pt);
-    padding-right: 0.5rem;
-    white-space: nowrap;
+    font-weight: 600;
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.25rem);
+    margin: 0;
+    color: var(--title-color, #333);
 }
 
 .employer {
     font-style: italic;
-    font-size: clamp(1.1rem, 1rem + 0.5vw, 16pt);
+    font-size: clamp(1rem, 0.95rem + 0.3vw, 1.15rem);
     position: relative;
-    padding-left: 1rem;
+    display: flex;
+    align-items: center;
 }
 
 .employer::before {
     content: "•";
-    position: absolute;
-    left: 0.25rem;
+    margin-right: 0.5rem;
     color: #888;
     font-style: normal;
 }
 
-@media (max-width: 640px) {
-    .exp-header {
-        grid-template-columns: 1fr;
-    }
-    
-    .job-title {
-        white-space: normal;
-        padding-right: 0;
-    }
-    
-    .employer {
-        padding-left: 0;
-    }
-    
-    .employer::before {
-        display: none;
-    }
+.exp-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
-.exp-calendar {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1rem;
+.exp-time {
+    display: flex;
     align-items: center;
-    margin-top: 0.25rem;
+    gap: 0.5rem;
 }
 
 .calendar-svg {
-    fill: var(--title-color);
-    width: 30px;
-    height: 30px;
+    fill: var(--title-color, #666);
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
 }
 
 .exp-dates {
     font-style: italic;
-    color: var(--title-color);
-    font-weight: bold;
+    color: var(--title-color, #666);
+    font-size: 0.95rem;
+}
+
+
+@media (max-width: 640px) {
+    .exp-details {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+  
+    .employer::before {
+        display: inline;
+    }
 }
 
 .current-exp {
@@ -172,8 +172,6 @@ let expanded: boolean = $state(false);
 }
 
 .long-description {
-    border: 1px solid #eee;
-    border-radius: 10px;
-    padding-right: 1rem;
+    padding: 0.25rem 0.5rem;
 }
 </style>

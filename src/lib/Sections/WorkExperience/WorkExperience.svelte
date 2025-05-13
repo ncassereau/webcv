@@ -56,7 +56,7 @@ hr {
     width: 85%;
     border: none;
     position: relative;
-    margin: 5px auto;
+    margin: 1rem auto;
 }
 
 hr:before {
