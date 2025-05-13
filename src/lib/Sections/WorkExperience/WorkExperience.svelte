@@ -49,8 +49,6 @@ const experiences = [IDRIS, Picomto, Braintale, ThalesServices]
     margin: 0 2rem;
 }
 
-
-
 hr {
     height: 12px;
     width: 85%;

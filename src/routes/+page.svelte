@@ -8,6 +8,7 @@ import WorkExperience from "$lib/Sections/WorkExperience/WorkExperience.svelte";
 import Teachings from "$lib/Sections/Teachings.svelte";
 import Profile from "$lib/Sections/Profile.svelte";
 import Footer from "$lib/Footer.svelte";
+import Education from "$lib/Sections/Education.svelte";
 
 let displayLLM: boolean = $state(false);
 
@@ -37,6 +38,12 @@ let displayLLM: boolean = $state(false);
         <SectionContainer id="teachings">
             <SubSectionContainer>
                 <Teachings />
+            </SubSectionContainer>
+        </SectionContainer>
+
+        <SectionContainer id="education">
+            <SubSectionContainer>
+                <Education />
             </SubSectionContainer>
         </SectionContainer>
     </div>
