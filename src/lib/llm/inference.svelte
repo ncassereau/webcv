@@ -11,14 +11,14 @@ interface Message {
     content: string;
 }
 
-let API_URL = "http://localhost:11434";
-let model = "qwen2.5-coder:1.5b";
+const API_URL = "http://localhost:11434";
+const MODEL = "gemma3:1b-it-qat";
 
 
 async function* ollama_generate(messages: Message[]) {
     const ollama = new Ollama({ host: API_URL });
     const response = await ollama.chat({
-        model: model,
+        model: MODEL,
         messages: messages,
         stream: true,
     });

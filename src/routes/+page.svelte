@@ -1,10 +1,10 @@
 <script lang="ts">
 
-import AssistantButton from "$lib/assistant-button.svelte";
+import AssistantButton from "$lib/AssistantButton.svelte";
 import LlmModal from "$lib/llm/LLMModal.svelte";
 import SectionContainer from "$lib/Sections/SectionContainer.svelte";
 import SubSectionContainer from "$lib/Sections/SubSectionContainer.svelte";
-import WorkExperience from "$lib/Sections/WorkExperience.svelte";
+import WorkExperience from "$lib/Sections/WorkExperience/WorkExperience.svelte";
 import Teachings from "$lib/Sections/Teachings.svelte";
 import Profile from "$lib/Sections/Profile.svelte";
 import Footer from "$lib/Footer.svelte";

@@ -45,7 +45,7 @@ function onbuttonclick() {
     border: 1px solid #e9ecef;
     border-radius: 30px;
     padding: 0.5rem 1.5rem;
-    margin: 0.5rem auto 1rem;
+    margin: 0.5rem auto;
     display: flex;
     align-items: center;
     gap: 0.5rem;
