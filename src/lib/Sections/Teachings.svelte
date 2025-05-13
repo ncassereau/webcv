@@ -293,19 +293,6 @@ function toggleItem(id: string) {
     margin-top: 2rem;
 }
 
-.course-link {
-    display: inline-block;
-    color: #4e89ae;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s ease;
-}
-
-.course-link:hover {
-    color: #43cea2;
-    text-decoration: underline;
-}
-
 .performance-stats {
     display: flex;
     justify-content: space-around;
