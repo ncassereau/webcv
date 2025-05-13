@@ -1,7 +1,7 @@
 <script lang="ts">
 
-let annee = new Date().getFullYear();
-let repoUrl = $state("https://github.com/ncassereau/webcv");
+const annee = new Date().getFullYear();
+const repoUrl = "https://github.com/ncassereau/webcv";
 
 </script>
 
