@@ -10,6 +10,7 @@ import Profile from "$lib/Sections/Profile.svelte";
 import Footer from "$lib/Footer.svelte";
 import Education from "$lib/Sections/Education.svelte";
 import Skills from "$lib/Sections/Skills.svelte";
+import Summary from "$lib/Sections/Summary.svelte";
 
 let displayLLM: boolean = $state(false);
 
@@ -36,6 +37,12 @@ let displayLLM: boolean = $state(false);
         </SectionContainer>
     </div>
     <div class="col-container">
+        <SectionContainer id="summary">
+            <SubSectionContainer>
+                <Summary />
+            </SubSectionContainer>
+        </SectionContainer>
+
         <SectionContainer id="work-exp">
             <SubSectionContainer>
                 <WorkExperience />
@@ -93,6 +100,7 @@ let displayLLM: boolean = $state(false);
     margin: 0 auto;
     padding: var(--spacing-lg);
     width: 100%;
+    max-width: 1400px;
 }
 
 .col-container {
