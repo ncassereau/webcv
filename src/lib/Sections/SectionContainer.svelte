@@ -63,17 +63,4 @@ let { id = "", children }: { id: string, children: Snippet } = $props();
     to { background-color: transparent; }
 }
 
-.section-container :global(a) {
-    display: inline-block;
-    color: #4e89ae;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s ease;
-}
-
-.section-container :global(a:hover) {
-    color: #43cea2;
-    text-decoration: underline;
-}
-
 </style>
