@@ -96,7 +96,7 @@ let expanded: boolean = $state(false);
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    gap: 0.5rem 1rem;
+    gap: 0.5rem;
 }
 
 .job-title {
