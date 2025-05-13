@@ -3,7 +3,8 @@
 import { marked } from 'marked';
 import { Ollama } from "ollama";
 
-    
+import SystemPrompt from './systemprompt.txt?raw';
+
 const markdownSpecialChars = new Set(['-', '#', '*', '>', '_', '=', '+', '`', '$']);
 
 interface Message {
@@ -12,7 +13,8 @@ interface Message {
 }
 
 const API_URL = "http://localhost:11434";
-const MODEL = "gemma3:1b-it-qat";
+const MODEL = "hf.co/Qwen/Qwen3-4B-GGUF";
+const INITIAL_MESSAGE = "Hi, I'm Nathan's most loyal LLM assistant! I'm here to answer any question you might have on Nathan's profile."
 
 
 async function* ollama_generate(messages: Message[]) {
@@ -105,8 +107,12 @@ export class Chat {
     async prompt_llm(prompt: string) {
         this.is_empty = false;
         this.currentlyPrintingResponse = true;
+        this.fetch_response([
+            {"role": "system", "content": SystemPrompt},
+            ...this.messages.slice(1, this.messages.length),
+            {"role": "user", "content": prompt + " /no_think"}
+        ]);
         this.messages.push({"role": "user", "content": prompt});
-        this.fetch_response(this.messages.slice(1, this.messages.length));
         await this.print_buffer_content();
         this.currentlyPrintingResponse = false;
     }
@@ -128,7 +134,7 @@ export class ChatsState {
         let newchat = new Chat();
         this.chats.push(newchat);
         this.focusedChatIdx = this.chats.length - 1;
-        newchat.buffer = ["Bonjour, je suis l'assistant de Nathan, promptez-moi !"];
+        newchat.buffer = [INITIAL_MESSAGE];
         await newchat.print_buffer_content();
         newchat.currentlyPrintingResponse = false;
     }

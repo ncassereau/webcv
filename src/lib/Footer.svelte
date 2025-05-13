@@ -26,7 +26,7 @@ let repoUrl = $state("https://github.com/ncassereau/webcv");
         
         <div class="footer-copyright">
         <p>&copy; {annee} Nathan Cassereau. All rights reserved</p>
-        <p class="last-update">Last updated: April 2025</p>
+        <p class="last-update">Last updated: May 2025</p>
         </div>
     </div>
 </footer>
