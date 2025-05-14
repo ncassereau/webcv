@@ -1,0 +1,39 @@
+name: Deploy to OVH
+
+on:
+  push:
+    branches:
+      - master
+  # release:
+  #   types: [published]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout du code
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Use Node.js 22
+      uses: actions/setup-node@v2
+      with:
+        node-version: '22'
+
+    # Installation des dépendances et build
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build project
+      run: PUBLIC_USE_LOCAL_OLLAMA=0 npm run build
+
+    # Déploiement via SFTP
+    - name: Deploy via SFTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        local-dir: build/ # Répertoire local contenant les fichiers à déployer (ajustez selon votre configuration)
+        server-dir: /www/ # Répertoire distant sur votre serveur OVH
+        server: ${{ secrets.SFTP_HOST }}
+        username: ${{ secrets.SFTP_USER }}
+        password: ${{ secrets.SFTP_PASSWORD }}
