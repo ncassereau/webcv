@@ -26,7 +26,7 @@ jobs:
       run: npm install
 
     - name: Build project
-      run: PUBLIC_USE_LOCAL_OLLAMA=0 npm run build
+      run: PUBLIC_USE_LOCAL_OLLAMA=0 PUBLIC_HF_INFERENCE_TOKEN=${{ secrets.HF_INFERENCE_TOKEN }} npm run build
 
     # Déploiement via SFTP
     - name: Deploy via SFTP
