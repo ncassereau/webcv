@@ -1,38 +1,59 @@
 <script module lang="ts">
-    
+
+import {
+    PUBLIC_USE_LOCAL_OLLAMA,
+    PUBLIC_HF_INFERENCE_TOKEN,
+} from "$env/static/public";
+
+import { InferenceClient } from "@huggingface/inference";
+import type { ChatCompletionInputMessage } from "@huggingface/tasks";
 import { marked } from 'marked';
-import { Ollama } from "ollama";
+import { Ollama, type Message } from "ollama";
 
 import SystemPrompt from './systemprompt.txt?raw';
 
 const markdownSpecialChars = new Set(['-', '#', '*', '>', '_', '=', '+', '`', '$']);
 
-interface Message {
-    role: "user" | "assistant" | "system";
-    content: string;
-}
-
-const API_URL = "http://localhost:11434";
-const MODEL = "hf.co/Qwen/Qwen3-4B-GGUF";
+const OLLAMA_API_URL = "http://localhost:11434";
+const OLLAMA_MODEL = "hf.co/Qwen/Qwen3-4B-GGUF";
+const HUGGINGFACE_MODEL = "Qwen/Qwen3-4B"
 const INITIAL_MESSAGE = "Hi, I'm Nathan's most loyal LLM assistant! I'm here to answer any question you might have on Nathan's profile."
 
 
-async function* ollama_generate(messages: Message[]) {
-    const ollama = new Ollama({ host: API_URL });
+async function* ollama_generate(messages: ChatCompletionInputMessage[]) {
+    console.log("OLLAMA")
+    const ollama = new Ollama({ host: OLLAMA_API_URL });
     const response = await ollama.chat({
-        model: MODEL,
-        messages: messages,
+        model: OLLAMA_MODEL,
+        messages: messages as Message[],
         stream: true,
-        options: {
-            temperature: 0.8,
-            top_p: 0.9,
-            top_k: 50,
-            repeat_penalty: 2,
-        }
     });
-    for await (const part of response) {
-        if (part.message.content.length > 0) {
-            yield part.message.content;
+    for await (const chunk of response) {
+        if (chunk.message.content.length > 0) {
+            yield chunk.message.content;
+        }
+    }
+}
+
+async function* hf_generate(messages: ChatCompletionInputMessage[]) {
+    console.log("HUGGINGFACE")
+    const client = new InferenceClient(PUBLIC_HF_INFERENCE_TOKEN);
+    const response = client.chatCompletionStream({
+        model: HUGGINGFACE_MODEL,
+        messages: messages,
+        provider: "nebius",
+        temperature: 0.6,
+        max_tokens: 512,
+        top_p: 0.9,
+    });
+    for await (const chunk of response) {
+        if (
+            chunk.choices
+            && chunk.choices.length > 0
+            && chunk.choices[0].delta.content
+            && chunk.choices[0].delta.content.length > 0
+        ) {
+            yield chunk.choices[0].delta.content;
         }
     }
 }
@@ -40,16 +61,22 @@ async function* ollama_generate(messages: Message[]) {
 
 export class Chat {
 
-    messages: Message[] = $state([]);
+    messages: ChatCompletionInputMessage[] = $state([]);
     buffer: Array<string> = $state([]);
     currentlyGenerating: boolean = $state(false);
     currentlyPrintingResponse: boolean = $state(false);
     is_empty: boolean = true;
 
 
-    async fetch_response(messages: Message[]) {
+    async fetch_response(messages: ChatCompletionInputMessage[]) {
         this.currentlyGenerating = true;
-        for await (const item of ollama_generate(messages)) {
+        let stream: AsyncGenerator<string, void, unknown>;
+        if (parseInt(PUBLIC_USE_LOCAL_OLLAMA)) {
+            stream = ollama_generate(messages);
+        } else {
+            stream = hf_generate(messages);
+        }
+        for await (const item of stream) {
             this.buffer.push(item);
         }
         this.currentlyGenerating = false;
