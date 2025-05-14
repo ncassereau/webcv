@@ -65,7 +65,7 @@
                     c-27.114,0-49.191-22.076-49.191-49.191C148.658,110.2,170.734,88.138,197.849,88.138z"
 				/>
 			</svg>
-			<span class="contact-text">Paris, <span style="font-variant: small-caps">France</span></span>
+			<span class="contact-text">Paris, France</span>
 		</div>
 
 		<!-- MAIL -->
