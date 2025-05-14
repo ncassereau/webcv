@@ -23,6 +23,12 @@ async function* ollama_generate(messages: Message[]) {
         model: MODEL,
         messages: messages,
         stream: true,
+        options: {
+            temperature: 0.8,
+            top_p: 0.9,
+            top_k: 50,
+            repeat_penalty: 2,
+        }
     });
     for await (const part of response) {
         if (part.message.content.length > 0) {

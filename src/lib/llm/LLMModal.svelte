@@ -30,8 +30,9 @@ async function newChat() {
 async function submit_user_input() {
     let trimmed_input = user_input.trim();
     if (trimmed_input.length > 0) {
-        chat?.prompt_llm(trimmed_input);
         user_input = "";
+        await chat?.prompt_llm(trimmed_input);
+        userTextArea.focus();
     }
 }
 
@@ -95,7 +96,10 @@ onDestroy(() => {
                     {@render cross(true, newChat)}
                     {@render cross(false, close)}
                 </div>
-                <div class="title">LLM Inference</div>
+                <div class="title">
+                    NathanGPT
+                    <span style="font-size: 6pt">Or more like Qwen 3</span>
+                </div>
             </div>
 
             <div class="body-container">

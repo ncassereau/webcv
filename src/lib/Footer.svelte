@@ -35,7 +35,7 @@ const repoUrl = "https://github.com/ncassereau/webcv";
 <style>
 
 footer {
-    padding: var(--spacing-xl) 0 var(--spacing-lg) 0;
+    padding: var(--spacing-lg) 0;
     font-size: 14px;
     margin-top: auto;
     background-color: #333;
