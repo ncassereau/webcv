@@ -6,7 +6,7 @@
 	jobTitle="Artificial Intelligence Expert Engineer on Supercomputers"
 	employer="IDRIS (CNRS)"
 	start="May 2021"
-	current={true}
+	end="May 2025"
 >
 	Led critical AI infrastructure support on France's national supercomputing platform, delivering
 	both daily technical expertise to researchers and long-term engineering collaboration on

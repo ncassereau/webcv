@@ -1,10 +1,11 @@
 <script lang="ts">
 	import Braintale from './Braintale.svelte';
+	import Entalpic from './Entalpic.svelte';
 	import IDRIS from './IDRIS.svelte';
 	import Picomto from './Picomto.svelte';
 	import ThalesServices from './ThalesServices.svelte';
 
-	const experiences = [IDRIS, Picomto, Braintale, ThalesServices];
+	const experiences = [Entalpic, IDRIS, Picomto, Braintale, ThalesServices];
 </script>
 
 <h1>

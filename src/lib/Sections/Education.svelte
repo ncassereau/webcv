@@ -78,14 +78,13 @@
 	.education-container {
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
 		margin: 0 2rem;
 	}
 
 	.education-item {
 		display: flex;
 		flex-direction: column;
-		gap: 0.75rem;
+		gap: 0.25rem;
 		padding: 1rem;
 		border-radius: 8px;
 		transition:
