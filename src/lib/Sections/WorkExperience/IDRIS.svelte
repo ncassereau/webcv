@@ -22,7 +22,7 @@
 					distributed environment, protection of shared conda environment)
 				</li>
 				<li>
-					Benchmarks new hardware accelerators (NVIDIA GPUs, AMD GPUs, GraphCore IPU, Cerebras, etc)
+					Benchmarks new hardware accelerators (NVIDIA GPUs, AMD GPUs, GraphCore IPU, etc)
 					and libraries
 				</li>
 				<li>Technological watch in Deep Learning, and particularly Natural Language Processing</li>

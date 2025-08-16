@@ -11,8 +11,8 @@
 	const markdownSpecialChars = new Set(['-', '#', '*', '>', '_', '=', '+', '`', '$']);
 
 	const OLLAMA_API_URL = 'http://localhost:11434';
-	const OLLAMA_MODEL = 'hf.co/Qwen/Qwen3-4B-GGUF';
-	const HUGGINGFACE_MODEL = 'Qwen/Qwen3-4B';
+	const OLLAMA_MODEL = 'hf.co/Qwen/Qwen3-14B-GGUF';
+	const HUGGINGFACE_MODEL = 'Qwen/Qwen3-14B';
 	const INITIAL_MESSAGE =
 		"Hi, I'm Nathan's most loyal LLM assistant! I'm here to answer any question you might have on Nathan's profile.";
 
