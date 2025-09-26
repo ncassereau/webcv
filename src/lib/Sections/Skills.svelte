@@ -32,10 +32,10 @@
 			<div class="tags-container">
 				<span class="skill-tag">Deep Learning</span>
 				<span class="skill-tag">NLP & LLM</span>
-				<span class="skill-tag">Diffusion Models</span>
+				<span class="skill-tag">Post-training</span>
 				<span class="skill-tag">Computer Vision</span>
-				<span class="skill-tag">Model Alignment</span>
 				<span class="skill-tag">Multi-modal AI</span>
+				<span class="skill-tag">Diffusion Models</span>
 			</div>
 		</div>
 
@@ -50,6 +50,7 @@
 				<span class="skill-tag">LangChain</span>
 				<span class="skill-tag">vLLM</span>
 				<span class="skill-tag">Horovod</span>
+				<span class="skill-tag">CUDA</span>
 			</div>
 		</div>
 
@@ -64,6 +65,7 @@
 				<span class="skill-tag">OpenMP</span>
 				<span class="skill-tag">Slurm</span>
 				<span class="skill-tag">Docker</span>
+				<span class="skill-tag">Rust</span>
 				<span class="skill-tag">Proxmox</span>
 			</div>
 		</div>

@@ -1,11 +1,10 @@
 <script lang="ts">
-	import Braintale from './Braintale.svelte';
+	import AMIAD from './AMIAD.svelte';
 	import Entalpic from './Entalpic.svelte';
 	import IDRIS from './IDRIS.svelte';
-	import Picomto from './Picomto.svelte';
-	import ThalesServices from './ThalesServices.svelte';
+	import Internships from './internships/Internships.svelte';
 
-	const experiences = [Entalpic, IDRIS, Picomto, Braintale, ThalesServices];
+	const experiences = [AMIAD, Entalpic, IDRIS, Internships];
 </script>
 
 <h1>
@@ -42,36 +41,37 @@
 
 	.all-experiences {
 		margin: 0 2rem;
-	}
+		padding-bottom: var(--spacing-md);
 
-	hr {
-		height: 12px;
-		width: 85%;
-		border: none;
-		position: relative;
-		margin: 1rem auto;
-	}
+		:global(hr) {
+			height: 12px;
+			width: 85%;
+			border: none;
+			position: relative;
+			margin: 1rem auto;
+		}
 
-	hr:before {
-		content: '';
-		position: absolute;
-		top: 6px;
-		left: 0;
-		right: 0;
-		height: 1px;
-		background: #ddd;
-	}
+		:global(hr:before) {
+			content: '';
+			position: absolute;
+			top: 6px;
+			left: 0;
+			right: 0;
+			height: 1px;
+			background: #ddd;
+		}
 
-	hr:after {
-		content: '•';
-		position: absolute;
-		left: 50%;
-		top: 0px;
-		transform: translateX(-50%) scale(2);
-		background-color: white;
-		padding: 0 15px;
-		color: #555;
-		font-size: 12px;
-		line-height: 12px;
+		:global(hr:after) {
+			content: '•';
+			position: absolute;
+			left: 50%;
+			top: 0px;
+			transform: translateX(-50%) scale(2);
+			background-color: white;
+			padding: 0 15px;
+			color: #555;
+			font-size: 12px;
+			line-height: 12px;
+		}
 	}
 </style>

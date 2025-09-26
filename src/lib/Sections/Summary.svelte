@@ -10,5 +10,10 @@
 </h1>
 
 <p>
-	I'm an Artificial Intelligence Engineer with deep expertise in supercomputing environments and LLMs. I specialize in distributed training, efficient fine-tuning across GPU clusters, and optimized model deployment. Currently working on AI training software, I develop solutions that bridge cutting-edge research with production systems. My experience spans from providing AI training and consultancy to research institutions to building specialized tools for high-performance computing environments.
+	I'm an Artificial Intelligence Engineer with deep expertise in supercomputing environments and
+	LLMs. I specialize in distributed training, efficient fine-tuning across GPU clusters, and
+	optimized model deployment. Currently working on AI training software, I develop solutions that
+	bridge cutting-edge research with production systems. My experience spans from providing AI
+	training and consultancy to research institutions to building specialized tools for
+	high-performance computing environments.
 </p>

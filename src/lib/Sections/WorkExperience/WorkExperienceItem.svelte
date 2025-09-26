@@ -11,7 +11,7 @@
 		end = '',
 		current = false,
 		description = null,
-		children
+		children = null
 	}: {
 		jobTitle: string;
 		employer: string;
@@ -19,7 +19,7 @@
 		end?: string;
 		current?: boolean;
 		description?: string | null;
-		children: Snippet;
+		children?: Snippet | null;
 	} = $props();
 
 	let expanded: boolean = $state(false);
@@ -53,23 +53,23 @@
 					{start} - {#if current}<span class="current-exp">Ongoing</span>{:else}{end}{/if}
 				</span>
 			</div>
-			<SeeMoreButton
-				collapseText="See less"
-				enlargeText="See more"
-				bind:expanded
-				centered={false}
-			/>
+			{#if children !== null}
+				<SeeMoreButton
+					collapseText="See less"
+					enlargeText="See more"
+					bind:expanded
+					centered={false}
+				/>
+			{/if}
 		</div>
 		{#if description !== null}
 			<div class="short-description">{description}</div>
 		{/if}
-		<div>
-			{#if expanded}
-				<div class="long-description" transition:slide={{ duration: 300 }}>
-					{@render children()}
-				</div>
-			{/if}
-		</div>
+		{#if expanded && children !== null}
+			<div class="long-description" transition:slide={{ duration: 300 }}>
+				{@render children()}
+			</div>
+		{/if}
 	</div>
 </div>
 
@@ -77,7 +77,6 @@
 	.experience {
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
 	}
 
 	.experience-card {

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import WorkExperienceItem from './WorkExperienceItem.svelte';
+	import WorkExperienceItem from '../WorkExperienceItem.svelte';
 </script>
 
 <WorkExperienceItem
