@@ -12,7 +12,7 @@
 	both daily technical expertise to researchers and long-term engineering collaboration on
 	cutting-edge AI research projects across multiple scientific domains.
 
-	<ul>
+	<ul style="margin-bottom: 0;">
 		<li>
 			Engineer in the AI support team at IDRIS
 			<ul>

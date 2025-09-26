@@ -9,7 +9,7 @@
 	end="August 2018"
 >
 	Worker internship in Thales' data center in Élancourt.
-	<ul>
+	<ul style="margin-bottom: 0;">
 		<li>Performed maintenance and configuration on enterprise-grade server racks</li>
 		<li>Implemented technical setups for various networking equipment.</li>
 		<li>Conducted comprehensive hardware inventories and managed equipment lifecycle.</li>

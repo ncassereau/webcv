@@ -82,7 +82,6 @@
 	.experience-card {
 		display: flex;
 		flex-direction: column;
-		gap: 0.75rem;
 	}
 
 	.exp-header {
@@ -90,6 +89,7 @@
 		flex-wrap: wrap;
 		align-items: baseline;
 		gap: 0.5rem;
+		margin-bottom: 0.75rem;
 	}
 
 	.job-title {
@@ -163,7 +163,12 @@
 		white-space: nowrap;
 	}
 
+	.short-description {
+		margin-top: 0.75rem;
+	}
+
 	.long-description {
+		margin-top: 0.75rem;
 		padding: 0.25rem 0.5rem;
 	}
 </style>
