@@ -1,5 +1,12 @@
-<script lang="ts">
-</script>
+<script lang="ts"></script>
+
+{#snippet skill_list(skills: string[])}
+	<div class="tags-container">
+		{#each skills as skill}
+			<span class="skill-tag">{skill}</span>
+		{/each}
+	</div>
+{/snippet}
 
 <div class="skills-container">
 	<h1 class="section-title">
@@ -29,45 +36,45 @@
 
 		<div class="skills-group">
 			<div class="group-title">Core AI & ML</div>
-			<div class="tags-container">
-				<span class="skill-tag">Deep Learning</span>
-				<span class="skill-tag">NLP & LLM</span>
-				<span class="skill-tag">Post-training</span>
-				<span class="skill-tag">Computer Vision</span>
-				<span class="skill-tag">Multi-modal AI</span>
-				<span class="skill-tag">Diffusion Models</span>
-			</div>
+			{@render skill_list([
+				'Deep Learning',
+				'NLP & LLM',
+				'Post-training',
+				'Computer Vision',
+				'Multi-modal AI',
+				'Diffusion Models'
+			])}
 		</div>
 
 		<!-- Technology Stack -->
 		<div class="skills-group">
 			<div class="group-title">Technology Stack</div>
-			<div class="tags-container">
-				<span class="skill-tag">PyTorch</span>
-				<span class="skill-tag">DeepSpeed</span>
-				<span class="skill-tag">Transformers</span>
-				<span class="skill-tag">Accelerate</span>
-				<span class="skill-tag">LangChain</span>
-				<span class="skill-tag">vLLM</span>
-				<span class="skill-tag">Horovod</span>
-				<span class="skill-tag">CUDA</span>
-			</div>
+			{@render skill_list([
+				'PyTorch',
+				'DeepSpeed',
+				'Transformers',
+				'Accelerate',
+				'LangChain',
+				'vLLM',
+				'Horovod',
+				'CUDA'
+			])}
 		</div>
 
 		<!-- Infrastructure & Tools -->
 		<div class="skills-group">
 			<div class="group-title">Infrastructure & Tools</div>
-			<div class="tags-container">
-				<span class="skill-tag">Git</span>
-				<span class="skill-tag">CI/CD</span>
-				<span class="skill-tag">LaTeX</span>
-				<span class="skill-tag">MPI</span>
-				<span class="skill-tag">OpenMP</span>
-				<span class="skill-tag">Slurm</span>
-				<span class="skill-tag">Docker</span>
-				<span class="skill-tag">Rust</span>
-				<span class="skill-tag">Proxmox</span>
-			</div>
+			{@render skill_list([
+				'Git',
+				'CI/CD',
+				'LaTeX',
+				'MPI',
+				'OpenMP',
+				'Slurm',
+				'Docker',
+				'Rust',
+				'Proxmox'
+			])}
 		</div>
 	</div>
 </div>
