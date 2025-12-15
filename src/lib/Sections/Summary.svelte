@@ -10,10 +10,13 @@
 </h1>
 
 <p>
-	I'm an Artificial Intelligence Engineer with deep expertise in supercomputing environments and
-	LLMs. I specialize in distributed training, efficient fine-tuning across GPU clusters, and
-	optimized model deployment. Currently working on AI training software, I develop solutions that
-	bridge cutting-edge research with production systems. My experience spans from providing AI
-	training and consultancy to research institutions to building specialized tools for
-	high-performance computing environments.
+	I'm a Senior HPC AI Engineer with expertise spanning <strong>GPU kernel optimization</strong>
+	(CUDA, Triton: achieving <strong>7× speedup, 5× less memory</strong>),
+	<strong>distributed training</strong> at scale, and <strong>ML research collaboration</strong>. I
+	develop high-performance solutions across the full stack, from low-level kernel optimization to
+	infrastructure deployment and research support. My experience on supercomputers like
+	<strong>Jean Zay</strong> and <strong>GB200 NVL72</strong> covers performance optimization, infrastructure
+	automation, and hands-on collaboration on cutting-edge AI research projects across multiple scientific
+	domains (NLP, computer vision, astrophysics, climate modeling). I also provide training and consultancy
+	to research institutions on AI optimization and deep learning techniques.
 </p>

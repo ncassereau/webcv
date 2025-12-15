@@ -69,7 +69,7 @@
 	{@render educationItem(
 		'High-School Diploma in Science with Highest Honours',
 		'Lycée Jacques Monod',
-		'2017',
+		'2015',
 		'Clamart (France)'
 	)}
 </div>

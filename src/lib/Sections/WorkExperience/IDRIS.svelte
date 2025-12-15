@@ -3,7 +3,7 @@
 </script>
 
 <WorkExperienceItem
-	jobTitle="Artificial Intelligence Expert Engineer on Supercomputers"
+	jobTitle="Artificial Intelligence Engineer"
 	employer="IDRIS (CNRS)"
 	start="May 2021"
 	end="May 2025"
@@ -14,46 +14,46 @@
 
 	<ul style="margin-bottom: 0;">
 		<li>
-			Engineer in the AI support team at IDRIS
+			<strong>AI Support Team Engineer at IDRIS:</strong>
 			<ul>
-				<li>Helped researchers use the Jean Zay national Supercomputer</li>
+				<li>Helped researchers (>2000) use the <strong>Jean Zay</strong> national Supercomputer</li>
 				<li>
-					Developed tools to help manage and use the Supercomputer (e.g. initialization of
-					distributed environment, protection of shared conda environment)
+					Developed tools to help manage and use the Supercomputer (distributed environment
+					initialization, conda environment protection)
 				</li>
 				<li>
-					Benchmarks new hardware accelerators (NVIDIA GPUs, AMD GPUs, GraphCore IPU, etc) and
-					libraries
+					Benchmarked new hardware accelerators (NVIDIA GPUs, AMD GPUs, GraphCore IPU) and libraries
 				</li>
-				<li>Technological watch in Deep Learning, and particularly Natural Language Processing</li>
+				<li>Technological watch in Deep Learning, particularly Natural Language Processing</li>
 			</ul>
 		</li>
 		<li>
-			Engineer within PNRIA Network: help researchers in multiple research projects. A few examples:
+			<strong>Research Collaboration (PNRIA Network):</strong> Helped researchers in multiple
+			research projects:
 			<ul>
 				<li>
-					POT (<a href="https://github.com/PythonOT/POT">https://github.com/PythonOT/POT</a>): Help
-					implement multiple backends for optimal transport algorithms.
+					<strong>POT</strong> (<a href="https://github.com/PythonOT/POT"
+						>https://github.com/PythonOT/POT</a
+					>): Multiple backends for optimal transport algorithms
 				</li>
 				<li>
-					High-Resolution Modeling of Earth Systems (Pierre-Simon Laplace Institute): AI for
-					quickstarting NeMO simulations.
+					<strong>Earth Systems Modeling</strong> (Pierre-Simon Laplace Institute): AI for quickstarting
+					NeMO simulations
 				</li>
 				<li>
-					Spectroscopy (CREATIS): Diffusion Models to generate fake samples of brain spectroscopy
-					measurement.
+					<strong>Spectroscopy</strong> (CREATIS): Diffusion Models to generate brain spectroscopy samples
 				</li>
 				<li>
-					MMOMA (Flatiron Institute): Foundational Model for Astrophysics based on a multimodal
-					masked modelling.
+					<strong>AION</strong> (Flatiron Institute): Foundational Model for Astrophysics based on multimodal
+					masked modeling
 				</li>
-				<li>AutoSynth (LaBRI): Code generation with LLM in reverse polish notation.</li>
+				<li><strong>AutoSynth</strong> (LaBRI): Code generation with LLM</li>
 			</ul>
 		</li>
 		<li>
-			Tutoring in Artificial Intelligence. More on tutoring <a target="_self" href="#teachings"
-				>here</a
-			>.
+			<strong>Teaching in Artificial Intelligence.</strong> More than 1000 researchers / PhD formed.
+			More on teaching
+			<a target="_self" href="#teachings">here</a>.
 		</li>
 	</ul>
 </WorkExperienceItem>

@@ -42,9 +42,7 @@
 					d="M225.33,256.519c0-3.994,3.238-7.232,7.232-7.232h31.036c3.994,0,7.232,3.238,7.232,7.232v13.56 h-45.5V256.519z"
 				/>
 			</svg>
-			<span class="contact-text"
-				>Machine Learning Engineer <br />Artificial Intelligence Specialist</span
-			>
+			<span class="contact-text">Senior HPC AI Engineer</span>
 		</div>
 
 		<!-- ADDRESS -->

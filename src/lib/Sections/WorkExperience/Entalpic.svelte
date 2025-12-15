@@ -3,14 +3,12 @@
 </script>
 
 <WorkExperienceItem
-	jobTitle="HPC AI Engineer"
+	jobTitle="ML Engineer (Freelance)"
 	employer="Entalpic"
 	start="June 2025"
 	end="September 2025"
 >
-	I develop industry-grade training software for large-scale AI models, implementing features and
-	tools based on research team requirements. My work spans infrastructure optimization, specialized
-	benchmarking systems including MLIP benchmarks, and performance evaluation tools for
-	supercomputing environments, bridging the gap between cutting-edge research and production-ready
-	solutions.
+	I optimized their use of <strong>national supercomputers</strong>, achieving
+	<strong>5× throughput improvement</strong> in distributed training. I also built specialized
+	<strong>MLIP benchmarks</strong> and optimized training pipelines for chemistry AI models.
 </WorkExperienceItem>

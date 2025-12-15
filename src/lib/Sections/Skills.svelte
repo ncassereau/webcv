@@ -2,7 +2,7 @@
 
 {#snippet skill_list(skills: string[])}
 	<div class="tags-container">
-		{#each skills as skill}
+		{#each skills as skill (skill)}
 			<span class="skill-tag">{skill}</span>
 		{/each}
 	</div>
@@ -35,46 +35,47 @@
 		</div>
 
 		<div class="skills-group">
-			<div class="group-title">Core AI & ML</div>
-			{@render skill_list([
-				'Deep Learning',
-				'NLP & LLM',
-				'Post-training',
-				'Computer Vision',
-				'Multi-modal AI',
-				'Diffusion Models'
-			])}
+			<div class="group-title">GPU & Kernel Optimization</div>
+			{@render skill_list(['CUDA', 'Triton', 'Pallas', 'GPU Profiling (Nsight, Torch)'])}
 		</div>
 
-		<!-- Technology Stack -->
 		<div class="skills-group">
-			<div class="group-title">Technology Stack</div>
+			<div class="group-title">Multi-GPU Distribution</div>
+			{@render skill_list(['MPI', 'OpenMP', 'PyTorch DDP/FSDP', 'DeepSpeed', 'Megatron-LM'])}
+		</div>
+
+		<div class="skills-group">
+			<div class="group-title">ML Frameworks & Tools</div>
 			{@render skill_list([
 				'PyTorch',
-				'DeepSpeed',
-				'Transformers',
-				'Accelerate',
-				'LangChain',
+				'JAX',
 				'vLLM',
-				'Horovod',
-				'CUDA'
+				'W&B',
+				'MLflow',
+				'HuggingFace (Transformers, Datasets, Accelerate)',
+				'LangChain'
 			])}
 		</div>
 
-		<!-- Infrastructure & Tools -->
 		<div class="skills-group">
-			<div class="group-title">Infrastructure & Tools</div>
+			<div class="group-title">Deep Learning</div>
 			{@render skill_list([
-				'Git',
-				'CI/CD',
-				'LaTeX',
-				'MPI',
-				'OpenMP',
-				'Slurm',
-				'Docker',
-				'Rust',
-				'Proxmox'
+				'NLP & LLM',
+				'Computer Vision',
+				'Diffusion Models',
+				'Multi-modal AI',
+				'Post-training'
 			])}
+		</div>
+
+		<div class="skills-group">
+			<div class="group-title">HPC Infrastructure</div>
+			{@render skill_list(['Slurm', 'Spack', 'Docker', 'Modules', 'Conda', 'Ansible', 'Proxmox'])}
+		</div>
+
+		<div class="skills-group">
+			<div class="group-title">Programming & Tools</div>
+			{@render skill_list(['Python', 'C++', 'Rust', 'Jupyter', 'Git', 'CI/CD', 'LaTeX'])}
 		</div>
 	</div>
 </div>

@@ -20,7 +20,7 @@
 
 		<div class="footer-copyright">
 			<p>&copy; {annee} Nathan Cassereau. All rights reserved</p>
-			<p class="last-update">Last updated: September 2025</p>
+			<p class="last-update">Last updated: December 2025</p>
 		</div>
 	</div>
 </footer>
