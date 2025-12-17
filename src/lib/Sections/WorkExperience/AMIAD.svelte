@@ -32,13 +32,13 @@
 		</div>
 
 		<p>
-			<strong>Custom CUDA kernel:</strong> Hand-optimized CUDA implementation delivering 25% performance
+			<strong>Custom CUDA kernel:</strong> Hand-optimized CUDA implementation delivering 33% performance
 			improvement over JAX/XLA compiler.
 		</p>
 
 		<div class="performance-stats">
 			<div class="stat-item">
-				<span class="stat-value">+25%</span>
+				<span class="stat-value">+33%</span>
 				<span class="stat-label">Faster than JAX/XLA</span>
 			</div>
 		</div>
