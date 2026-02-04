@@ -11,7 +11,7 @@
 
 <p>
 	I'm a Senior HPC AI Engineer with expertise spanning <strong>GPU kernel optimization</strong>
-	(CUDA, Triton: achieving <strong>7× speedup, 5× less memory</strong>),
+	(CUDA, Triton: achieving <strong>10× speedup, 5× less memory</strong>),
 	<strong>distributed training</strong> at scale, and <strong>ML research collaboration</strong>. I
 	develop high-performance solutions across the full stack, from low-level kernel optimization to
 	infrastructure deployment and research support. My experience on supercomputers like

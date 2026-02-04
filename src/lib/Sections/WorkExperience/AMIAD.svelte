@@ -17,12 +17,12 @@
 
 		<p>
 			<strong>Second-order optimizer optimization:</strong> Developed a custom Triton kernel achieving
-			7x speedup and 5x memory reduction compared to base PyTorch implementation.
+			10x speedup and 5x memory reduction compared to base PyTorch implementation.
 		</p>
 
 		<div class="performance-stats">
 			<div class="stat-item">
-				<span class="stat-value">7×</span>
+				<span class="stat-value">10×</span>
 				<span class="stat-label">Speedup</span>
 			</div>
 			<div class="stat-item">
