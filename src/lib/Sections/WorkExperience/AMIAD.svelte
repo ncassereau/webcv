@@ -13,32 +13,31 @@
 	next-generation computing systems.
 
 	<div class="project-highlight">
-		<h4>Kernel Optimization Projects</h4>
+		<h4>Kernel Optimization</h4>
 
 		<p>
-			<strong>Second-order optimizer optimization:</strong> Developed a custom Triton kernel achieving
-			10x speedup and 5x memory reduction compared to base PyTorch implementation.
+			Developed custom <strong>CUDA</strong> and <strong>Triton</strong> kernels achieving significant
+			performance improvements:
 		</p>
+
+		<ul>
+			<li>
+				<strong>Second-order optimizer:</strong> 19× speedup and 5× memory reduction vs. PyTorch on B200
+			</li>
+			<li><strong>Custom CUDA kernel:</strong> 4.5× faster than JAX/XLA compiler</li>
+		</ul>
 
 		<div class="performance-stats">
 			<div class="stat-item">
-				<span class="stat-value">10×</span>
-				<span class="stat-label">Speedup</span>
+				<span class="stat-value">19×</span>
+				<span class="stat-label">Speedup vs PyTorch</span>
 			</div>
 			<div class="stat-item">
 				<span class="stat-value">5×</span>
 				<span class="stat-label">Memory reduction</span>
 			</div>
-		</div>
-
-		<p>
-			<strong>Custom CUDA kernel:</strong> Hand-optimized CUDA implementation delivering 33% performance
-			improvement over JAX/XLA compiler.
-		</p>
-
-		<div class="performance-stats">
 			<div class="stat-item">
-				<span class="stat-value">+33%</span>
+				<span class="stat-value">4.5×</span>
 				<span class="stat-label">Faster than JAX/XLA</span>
 			</div>
 		</div>
@@ -46,13 +45,13 @@
 
 	<ul style="margin-top: 1rem;">
 		<li>
-			<strong>HPC Infrastructure Support:</strong> Supporting researchers in using the newly acquired
-			NVIDIA GB200 NVL72 supercomputer through infrastructure setup (Spack installation, package management)
-			and development of Slurm job scheduling scripts.
+			<strong>HPC Infrastructure Support:</strong> Supporting researchers on
+			<strong>NVIDIA GB200 NVL72</strong>
+			supercomputer (Spack, Slurm scripting, cluster management).
 		</li>
 		<li>
-			<strong>Infrastructure Deployment:</strong> Infrastructure deployment and automation using Docker,
-			Ansible, and OpenStack for research computing environments.
+			Infrastructure deployment and automation using Docker, Ansible, and OpenStack for research
+			computing environments.
 		</li>
 	</ul>
 </WorkExperienceItem>
