@@ -12,7 +12,7 @@
 
 	const OLLAMA_API_URL = 'http://localhost:11434';
 	const OLLAMA_MODEL = 'hf.co/Qwen/Qwen3-14B-GGUF';
-	const HUGGINGFACE_MODEL = 'Qwen/Qwen3-32B:ovhcloud';
+	const HUGGINGFACE_MODEL = 'Qwen/Qwen3-32B';
 	const INITIAL_MESSAGE =
 		"Hi, I'm Nathan's most loyal LLM assistant! I'm here to answer any question you might have on Nathan's profile.";
 
@@ -37,8 +37,9 @@
 		const response = client.chatCompletionStream({
 			model: HUGGINGFACE_MODEL,
 			messages: messages,
+			provider: "ovhcloud",
 			temperature: 0.6,
-			max_tokens: 512,
+			max_tokens: 1024,
 			top_p: 0.9
 		});
 		for await (const chunk of response) {
