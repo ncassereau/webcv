@@ -43,6 +43,14 @@
 		</div>
 	</div>
 
+	<div class="project-highlight">
+		<h4>OhMyJob — Real-time Slurm Job Monitoring</h4>
+		<p>
+			Built a real-time monitoring platform for Slurm HPC jobs: collects live CPU/IO and GPU
+			metrics on compute nodes and centralises Slurm data into dashboards for researchers.
+		</p>
+	</div>
+
 	<ul style="margin-top: 1rem;">
 		<li>
 			<strong>HPC Infrastructure Support:</strong> Supporting researchers on

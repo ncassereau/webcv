@@ -40,8 +40,8 @@
 		</div>
 
 		<div class="skills-group">
-			<div class="group-title">Multi-GPU Distribution</div>
-			{@render skill_list(['MPI', 'OpenMP', 'PyTorch DDP/FSDP', 'DeepSpeed', 'Megatron-LM'])}
+			<div class="group-title">Distributed & Parallel Computing</div>
+			{@render skill_list(['OpenMP', 'PyTorch DDP/FSDP', 'DeepSpeed', 'Megatron-LM'])}
 		</div>
 
 		<div class="skills-group">
@@ -52,8 +52,7 @@
 				'vLLM',
 				'W&B',
 				'MLflow',
-				'HuggingFace (Transformers, Datasets, Accelerate)',
-				'LangChain'
+				'HuggingFace (Transformers, Datasets, Accelerate)'
 			])}
 		</div>
 
@@ -70,12 +69,12 @@
 
 		<div class="skills-group">
 			<div class="group-title">HPC Infrastructure</div>
-			{@render skill_list(['Slurm', 'Spack', 'Docker', 'Modules', 'Conda', 'Ansible', 'Proxmox'])}
+			{@render skill_list(['Slurm', 'Spack', 'Docker', 'Apptainer', 'Modules', 'Ansible', 'Terraform', 'OpenStack', 'Conda'])}
 		</div>
 
 		<div class="skills-group">
 			<div class="group-title">Programming & Tools</div>
-			{@render skill_list(['Python', 'C++', 'Rust', 'Jupyter', 'Git', 'CI/CD', 'LaTeX'])}
+			{@render skill_list(['Python', 'Rust', 'C++', 'Jupyter', 'Git', 'CI/CD', 'LaTeX', 'Grafana', 'PostgreSQL'])}
 		</div>
 	</div>
 </div>
