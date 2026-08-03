@@ -3,8 +3,9 @@
 	import Entalpic from './Entalpic.svelte';
 	import IDRIS from './IDRIS.svelte';
 	import Internships from './internships/Internships.svelte';
+	import NVIDIA from './NVIDIA.svelte';
 
-	const experiences = [AMIAD, Entalpic, IDRIS, Internships];
+	const experiences = [NVIDIA, AMIAD, Entalpic, IDRIS, Internships];
 </script>
 
 <h1>

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import AssistantButton from '$lib/AssistantButton.svelte';
-	import LlmModal from '$lib/llm/LLMModal.svelte';
+	// import AssistantButton from '$lib/AssistantButton.svelte';
+	// import LlmModal from '$lib/llm/LLMModal.svelte';
 	import SectionContainer from '$lib/Sections/SectionContainer.svelte';
 	import SubSectionContainer from '$lib/Sections/SubSectionContainer.svelte';
 	import WorkExperience from '$lib/Sections/WorkExperience/WorkExperience.svelte';
@@ -11,14 +11,14 @@
 	import Skills from '$lib/Sections/Skills.svelte';
 	import Summary from '$lib/Sections/Summary.svelte';
 
-	let displayLLM: boolean = $state(false);
+	// let displayLLM: boolean = $state(false);
 </script>
 
-{#if displayLLM}
+<!-- {#if displayLLM}
 	<LlmModal close={async () => (displayLLM = false)} />
 {:else}
 	<AssistantButton onclick={() => (displayLLM = true)} />
-{/if}
+{/if} -->
 
 <div class="page-container">
 	<div class="col-container">

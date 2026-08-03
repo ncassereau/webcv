@@ -6,7 +6,7 @@
 	jobTitle="Senior HPC AI Engineer"
 	employer="AMIAD"
 	start="October 2025"
-	current={true}
+	end="October 2026"
 >
 	Optimizing AI workloads using High-Performance Computing techniques on cutting-edge
 	infrastructure, delivering substantial performance improvements and supporting researchers on
