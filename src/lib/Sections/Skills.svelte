@@ -69,12 +69,32 @@
 
 		<div class="skills-group">
 			<div class="group-title">HPC Infrastructure</div>
-			{@render skill_list(['Slurm', 'Spack', 'Docker', 'Apptainer', 'Modules', 'Ansible', 'Terraform', 'OpenStack', 'Conda'])}
+			{@render skill_list([
+				'Slurm',
+				'Spack',
+				'Docker',
+				'Apptainer',
+				'Modules',
+				'Ansible',
+				'Terraform',
+				'OpenStack',
+				'Conda'
+			])}
 		</div>
 
 		<div class="skills-group">
 			<div class="group-title">Programming & Tools</div>
-			{@render skill_list(['Python', 'Rust', 'C++', 'Jupyter', 'Git', 'CI/CD', 'LaTeX', 'Grafana', 'PostgreSQL'])}
+			{@render skill_list([
+				'Python',
+				'Rust',
+				'C++',
+				'Jupyter',
+				'Git',
+				'CI/CD',
+				'LaTeX',
+				'Grafana',
+				'PostgreSQL'
+			])}
 		</div>
 	</div>
 </div>

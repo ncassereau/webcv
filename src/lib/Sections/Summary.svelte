@@ -13,7 +13,7 @@
 	I'm an AI/HPC engineer specializing in <strong>GPU kernel optimization</strong> (CUDA, Triton),
 	<strong>distributed training</strong> at scale, and research collaboration on national
 	supercomputers such as <strong>Jean Zay</strong> and <strong>GB200 NVL72</strong>. I work across
-	the full stack, from low-level kernel tuning to infrastructure deployment, supporting
-	cutting-edge AI research across multiple scientific domains (NLP, computer vision, astrophysics,
-	climate modeling), and I provide training on AI optimization techniques to research institutions.
+	the full stack, from low-level kernel tuning to infrastructure deployment, supporting cutting-edge
+	AI research across multiple scientific domains (NLP, computer vision, astrophysics, climate
+	modeling), and I provide training on AI optimization techniques to research institutions.
 </p>

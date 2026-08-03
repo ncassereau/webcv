@@ -1,0 +1,209 @@
+%%%%%%%%%%%%%%%%%
+% This is an sample CV template created using altacv.cls
+% (v1.7, 9 August 2023) written by LianTze Lim (liantze@gmail.com). Compiles with pdfLaTeX, XeLaTeX and LuaLaTeX.
+%
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%%%%%%%%%%%%%%%%
+
+%% Use the "normalphoto" option if you want a normal photo instead of cropped to a circle
+% \documentclass[10pt,a4paper,normalphoto]{altacv}
+
+\documentclass[9pt,a4paper,ragged2e,withhyper]{altacv}
+%% AltaCV uses the fontawesome5 and packages.
+%% See http://texdoc.net/pkg/fontawesome5 for full list of symbols.
+
+% Change the page layout if you need to
+\geometry{left=0.8cm,right=0.8cm,top=1.1cm,bottom=1.1cm,columnsep=1.2cm}
+
+% The paracol package lets you typeset columns of text in parallel
+\usepackage{paracol}
+
+\usepackage{twemojis}
+% Change the font if you want to, depending on whether
+% you're using pdflatex or xelatex/lualatex
+% WHEN COMPILING WITH XELATEX PLEASE USE
+% xelatex -shell-escape -output-driver="xdvipdfmx -z 0" sample.tex
+\ifxetexorluatex
+  % If using xelatex or lualatex:
+  \setmainfont{Roboto Slab}
+  \setsansfont{Lato}
+  \renewcommand{\familydefault}{\sfdefault}
+\else
+  % If using pdflatex:
+  \usepackage[rm]{roboto}
+  \usepackage[defaultsans]{lato}
+  % \usepackage{sourcesanspro}
+  \renewcommand{\familydefault}{\sfdefault}
+\fi
+
+% Change the colours if you want to
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{666666}
+\definecolor{DarkPastelRed}{HTML}{450808}
+\definecolor{PastelRed}{HTML}{8F0D0D}
+\definecolor{GoldenEarth}{HTML}{E7D192}
+\colorlet{name}{black}
+\colorlet{tagline}{PastelRed}
+\colorlet{heading}{DarkPastelRed}
+\colorlet{headingrule}{GoldenEarth}
+\colorlet{subheading}{PastelRed}
+\colorlet{accent}{PastelRed}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{LightGrey}
+
+% Change some fonts, if necessary
+\renewcommand{\namefont}{\Huge\rmfamily\bfseries}
+\renewcommand{\personalinfofont}{\footnotesize}
+\renewcommand{\cvsectionfont}{\LARGE\rmfamily\bfseries}
+\renewcommand{\cvsubsectionfont}{\large\bfseries}
+
+
+% Change the bullets for itemize and rating marker
+% for \cvskill if you want to
+\renewcommand{\cvItemMarker}{{\small\textbullet}}
+\renewcommand{\cvRatingMarker}{\faCircle}
+% ...and the markers for the date/location for \cvevent
+% \renewcommand{\cvDateMarker}{\faCalendar*[regular]}
+% \renewcommand{\cvLocationMarker}{\faMapMarker*}
+
+
+% If your CV/résumé is in a language other than English,
+% then you probably want to change these so that when you
+% copy-paste from the PDF or run pdftotext, the location
+% and date marker icons for \cvevent will paste as correct
+% translations. For example Spanish:
+% \renewcommand{\locationname}{Ubicación}
+% \renewcommand{\datename}{Fecha}
+
+
+\begin{document}
+\name{Nathan Cassereau}
+\tagline{AI DevTech @ NVIDIA}
+%% You can add multiple photos on the left or right
+\photoR{2.8cm}{moi}
+% \photoL{2.5cm}{Yacht_High,Suitcase_High}
+
+\NewInfoField{website}{\faGlobe}[https://]
+\NewInfoField{age}{\faCalendarDay}[]
+\NewInfoField{nationality}{\twemoji{flag: France} }[]
+
+\personalinfo{%
+  \email{nathan@cassereau.fr}
+  \phone{+33 6 77 54 14 95}
+  % \mailaddress{214 Boulevard du Moulin de la Tour, A104, 92140 Clamart (FRANCE)}
+  \nationality{French nationality}
+  \age{28 years old}
+  \location{Clamart, FRANCE}
+  \linkedin{nathan-cassereau}
+  \github{ncassereau}
+  \website{cassereau.fr}
+  
+  %% You can add your own arbitrary detail with
+  %% \printinfo{symbol}{detail}[optional hyperlink prefix]
+  % \printinfo{\faPaw}{Hey ho!}[https://example.com/]
+
+  %% Or you can declare your own field with
+  %% \NewInfoFiled{fieldname}{symbol}[optional hyperlink prefix] and use it:
+  % \NewInfoField{gitlab}{\faGitlab}[https://gitlab.com/]
+  % \gitlab{your_id}
+  %%
+  %% For services and platforms like Mastodon where there isn't a
+  %% straightforward relation between the user ID/nickname and the hyperlink,
+  %% you can use \printinfo directly e.g.
+  % \printinfo{\faMastodon}{@username@instace}[https://instance.url/@username]
+  %% But if you absolutely want to create new dedicated info fields for
+  %% such platforms, then use \NewInfoField* with a star:
+  % \NewInfoField*{mastodon}{\faMastodon}
+  %% then you can use \mastodon, with TWO arguments where the 2nd argument is
+  %% the full hyperlink.
+  % \mastodon{@username@instance}{https://instance.url/@username}
+}
+
+\makecvheader
+%% Depending on your tastes, you may want to make fonts of itemize environments slightly smaller
+% \AtBeginEnvironment{itemize}{\small}
+
+%% Set the left/right column width ratio to 6:4.
+\columnratio{0.6}
+
+Senior HPC/AI engineer with a track record in \textbf{GPU kernel optimization} (CUDA, Triton: \textbf{19× speedup, 5× memory reduction}), \textbf{distributed training} at scale, and ML research collaboration on national supercomputers (\textbf{Jean Zay, GB200 NVL72}). Joining \textbf{NVIDIA} in October 2026 as \textbf{AI DevTech}.
+
+
+% Start a 2-column paracol. Both the left and right columns will automatically
+% break across pages if things get too long.
+\cvsection{Experience}
+
+\cvevent{AI DevTech}{NVIDIA}{October 2026 (ongoing)}{Courbevoie, FRANCE}
+Joining NVIDIA's AI Developer Technologies team, focused on GPU/AI ecosystem enablement for research and industry.
+
+\divider
+
+\cvevent{Senior HPC AI Engineer}{AMIAD}{October 2025 -- October 2026}{Palaiseau, FRANCE}
+\begin{itemize}
+    \item \textbf{Kernel Optimization:} Developed custom \textbf{CUDA} and \textbf{Triton} kernels achieving significant performance improvements:
+    \begin{itemize}
+        \item Second-order optimizer: \textbf{19× speedup} and \textbf{5× memory reduction} vs. PyTorch on B200
+        \item Custom CUDA kernel: \textbf{4.5× faster} than JAX/XLA compiler
+    \end{itemize}
+    \item \textbf{HPC Infrastructure Support:} Supporting researchers on \textbf{NVIDIA NVL72} supercomputer (Spack, Slurm scripting, cluster management)
+    \item Built \textbf{OhMyJob}, a real-time monitoring platform for Slurm HPC jobs (CPU/IO/GPU metrics collected on compute nodes, centralised into dashboards for researchers)
+    \item Infrastructure deployment and automation using \textbf{Docker}, \textbf{Ansible}, and \textbf{OpenStack} for research computing environments.
+\end{itemize}
+\divider
+
+\cvevent{ML Engineer (Freelance)}{Entalpic}{June 2025 -- September 2025}{Paris, FRANCE}
+I optimized their use of \textbf{national supercomputers}, achieving
+\textbf{5× throughput improvement} in distributed training. I also implemented specialized
+\textbf{MLIP benchmarks} and optimized training pipelines for chemistry AI models.
+
+\divider
+
+\cvevent{Artificial Intelligence Engineer}{IDRIS (CNRS)}{May 2021 -- May 2025}{Orsay, FRANCE}
+\begin{itemize}
+\item \textbf{AI support team:} supporting \textbf{2000+ researchers} on \textbf{Jean Zay supercomputer}, benchmarking hardware accelerators (NVIDIA/AMD GPUs, GraphCore IPU), developing tools for \textbf{distributed training}
+\item \textbf{Research collaborations} (PNRIA): AION (Flatiron Institute, \textbf{foundational model} for astrophysics), AutoSynth (LaBRI, \textbf{LLM code generation})
+\item \textbf{Teaching:} Deep Learning courses (Intro, \textbf{Optimization for Supercomputers}, \textbf{LLM Specialization}), NVIDIA bootcamps, JSALT workshops
+\end{itemize}
+
+\cvsection{Education}
+\setlength{\columnsep}{0cm}
+\columnratio{0.55}
+\begin{paracol}{2}
+\cvevent{MSc.\ Artificial Intelligence \& Deep Learning with Honours}{Imperial College London}{2019 -- 2020}{London, UNITED KINGDOM}
+\switchcolumn
+\cvevent{Master in Engineering}{CentraleSupélec}{2017 -- 2020}{Gif-sur-Yvette, FRANCE}
+\end{paracol}
+
+\columnratio{0.3}
+\setlength{\columnsep}{1cm}
+\begin{paracol}{2}
+\cvsection{Languages}
+\cvskill{English}{5}
+\divider
+\cvskill{French}{5}
+
+\switchcolumn
+
+\cvsection{Skills \& Technologies}
+
+\cvtag{\textbf{GPU \& Kernel Optimization} (CUDA, Triton, GPU Profiling: Nsight / Torch)}
+
+\cvtag{\textbf{Distributed \& Parallel Computing} (OpenMP, PyTorch DDP/FSDP, DeepSpeed, Megatron)}
+
+\cvtag{\textbf{ML Frameworks \& Tools} (PyTorch, JAX, HuggingFace, vLLM, W\&B, MLflow)}
+
+\cvtag{\textbf{Deep Learning} (NLP \& LLM, Computer Vision, Diffusion, Multi-modal, Post-training)}
+
+\cvtag{\textbf{HPC Infrastructure} (Slurm, Spack, Docker, Apptainer, Modules, Ansible, Terraform)}
+
+\cvtag{\textbf{Programming \& Tools} (Python, C++, Rust, Jupyter, Git, CI/CD, \LaTeX, Grafana)}
+
+\end{paracol}
+
+\end{document}
