@@ -61,15 +61,6 @@
 						<li>Inference optimization</li>
 					</ul>
 				</div>
-
-				<a
-					href="https://cnrsformation.cnrs.fr/specialisation-des-llm-fine-tuning-et-prompt-engineering"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="course-link"
-				>
-					See course →
-				</a>
 			</div>
 		{/if}
 	</li>
@@ -112,15 +103,6 @@
 						<li>Advanced Parallelism methods (FSDP, Pipeline, Tensor & Context Parallelism)</li>
 					</ul>
 				</div>
-
-				<a
-					href="https://cnrsformation.cnrs.fr/deep-learning-optimise-sur-supercalculateur"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="course-link"
-				>
-					See course →
-				</a>
 			</div>
 		{/if}
 	</li>
@@ -150,15 +132,6 @@
 					</ul>
 				</div>
 
-				<a
-					href="https://cnrsformation.cnrs.fr/introduction-pratique-au-deep-learning"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="course-link"
-				>
-					See course →
-				</a>
-
 				<h2>Architecture of Deep Learning</h2>
 				This course gives an overview of multiple common Deep Learning architectures, as well as their
 				respective purposes, strengths, and weaknesses.
@@ -172,15 +145,6 @@
 						<li>Recurrent Neural Networks and more importantly Transformers</li>
 					</ul>
 				</div>
-
-				<a
-					href="https://cnrsformation.cnrs.fr/architectures-du-deep-learning"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="course-link"
-				>
-					See course →
-				</a>
 			</div>
 		{/if}
 	</li>
