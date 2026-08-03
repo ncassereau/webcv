@@ -130,7 +130,12 @@
 
 		<!-- CV PDF -->
 		<div class="contact-item">
-			<a href="/cv.pdf" target="_blank" rel="noopener noreferrer" class="contact-link">
+			<a
+				href="/nathan-cassereau-resume.pdf"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="contact-link"
+			>
 				<svg
 					viewBox="0 0 75.320129 92.604164"
 					xmlns="http://www.w3.org/2000/svg"

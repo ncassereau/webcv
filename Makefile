@@ -5,7 +5,7 @@ dev:
 
 cv:
 	cd tex && latexmk -pdf -interaction=nonstopmode -outdir=build cv.tex
-	cp tex/build/cv.pdf static/cv.pdf
+	cp tex/build/cv.pdf static/nathan-cassereau-resume.pdf
 
 cv-watch:
 	cd tex && latexmk -pdf -pvc -interaction=nonstopmode -outdir=build cv.tex
